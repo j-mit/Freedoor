@@ -6,7 +6,7 @@ baseUri: http://localhost:3000/freedor/{version}
 documentation: 
   - title: About Freedoor
     content: | 
-      Freedoor Prototype API description. CMPE 275 Project 2
+      Freedoor Prototype API description. CMPE 226 Project 2
   
 schemas:
   - BadRequest: |
@@ -177,16 +177,96 @@ schemas:
           body:
             application/json:
               schema: InternalServerError
-  /{categoryId}/product:
-    get:
-      description: Get list of all products by category id
-      responses:
-        200:
-          body:
-            application/json:
-              example: |
-                { 
-                  'products': [ 
+    /product:
+      get:
+        description: Get list of all products by category id
+        responses:
+          200:
+            body:
+              application/json:
+                example: |
+                  { 
+                    'products': [ 
+                      {
+                        'productId': '1d6eba40-7d02-11e4-b4a9-0800200c9a66',
+                        'productName': 'NewProduct',
+                        'quantity': 5,
+                        'userId': '37e55320-7d02-11e4-b4a9-0800200c9a66',
+                        'expectedOffer': 'This is expected',
+                        'productDesc': 'Its a test prodcut',
+                        'productExpiryDate': 1407533802,
+                        'isValid': 1,
+                        'categoryId': '5b7442b0-7d02-11e4-b4a9-0800200c9a66',
+                        'lastUpdated': 1407533802
+                      }
+                    ]
+                  }
+          400:
+            body:
+              application/json:
+                schema: BadRequest
+          404:
+            body:
+              application/json:
+                schema: NotFound
+          500:
+            body:
+              application/json:
+                schema: InternalServerError
+      post:
+        description: Create a new product in a particular category
+        body:
+          application/json:
+            example: |
+              {
+                'productName': 'NewProduct',
+                'quantity': 5,
+                'userId': '37e55320-7d02-11e4-b4a9-0800200c9a66',
+                'expectedOffer': 'This is expected',
+                'productDesc': 'Its a test prodcut',
+                'productExpiryDate': 1407533802,
+                'isValid': 1,
+                'categoryId': '5b7442b0-7d02-11e4-b4a9-0800200c9a66',
+                'lastUpdated': 1407533802
+              }
+        responses:
+          200:
+            body:
+              application/json:
+                example: |
+                  {
+                    'productId': '1d6eba40-7d02-11e4-b4a9-0800200c9a66',
+                    'productName': 'NewProduct',
+                    'quantity': 5,
+                    'userId': '37e55320-7d02-11e4-b4a9-0800200c9a66',
+                    'expectedOffer': 'This is expected',
+                    'productDesc': 'Its a test prodcut',
+                    'productExpiryDate': 1407533802,
+                    'isValid': 1,
+                    'categoryId': '5b7442b0-7d02-11e4-b4a9-0800200c9a66',
+                    'lastUpdated': 1407533802
+                  }
+          400:
+            body:
+              application/json:
+                schema: BadRequest
+          404:
+            body:
+              application/json:
+                schema: NotFound
+          500:
+            body:
+              application/json:
+                schema: InternalServerError
+
+      /{productId}:
+        get:
+          description: Get details of a product by product id
+          responses:
+            200:
+              body:
+                application/json:
+                  example: |
                     {
                       'productId': '1d6eba40-7d02-11e4-b4a9-0800200c9a66',
                       'productName': 'NewProduct',
@@ -199,38 +279,21 @@ schemas:
                       'categoryId': '5b7442b0-7d02-11e4-b4a9-0800200c9a66',
                       'lastUpdated': 1407533802
                     }
-                  ]
-                }
-        400:
-          body:
-            application/json:
-              schema: BadRequest
-        404:
-          body:
-            application/json:
-              schema: NotFound
-        500:
-          body:
-            application/json:
-              schema: InternalServerError
-    post:
-      description: Create a new product in a particular category
-      body:
-        application/json:
-          example: |
-            {
-              'productName': 'NewProduct',
-              'quantity': 5,
-              'userId': '37e55320-7d02-11e4-b4a9-0800200c9a66',
-              'expectedOffer': 'This is expected',
-              'productDesc': 'Its a test prodcut',
-              'productExpiryDate': 1407533802,
-              'isValid': 1,
-              'categoryId': '5b7442b0-7d02-11e4-b4a9-0800200c9a66',
-              'lastUpdated': 1407533802
-            }
-      responses:
-        200:
+            400:
+              body:
+                application/json:
+                  schema: BadRequest
+            404:
+              body:
+                application/json:
+                  schema: NotFound
+            500:
+              body:
+                application/json:
+                  schema: InternalServerError      
+            
+        put:
+          description: Change the details of a product
           body:
             application/json:
               example: |
@@ -246,124 +309,176 @@ schemas:
                   'categoryId': '5b7442b0-7d02-11e4-b4a9-0800200c9a66',
                   'lastUpdated': 1407533802
                 }
-        400:
-          body:
-            application/json:
-              schema: BadRequest
-        404:
-          body:
-            application/json:
-              schema: NotFound
-        500:
-          body:
-            application/json:
-              schema: InternalServerError
+          responses:
+            200:
+              body:
+                application/json:
+                  example: |
+                    {
+                      'productId': '1d6eba40-7d02-11e4-b4a9-0800200c9a66',
+                      'productName': 'NewProduct',
+                      'quantity': 5,
+                      'userId': '37e55320-7d02-11e4-b4a9-0800200c9a66',
+                      'expectedOffer': 'This is expected',
+                      'productDesc': 'Its a test prodcut',
+                      'productExpiryDate': 1407533802,
+                      'isValid': 1,
+                      'categoryId': '5b7442b0-7d02-11e4-b4a9-0800200c9a66',
+                      'lastUpdated': 1407533802
+                    }
+            400:
+              body:
+                application/json:
+                  schema: BadRequest
+            404:
+              body:
+                application/json:
+                  schema: NotFound
+            500:
+              body:
+                application/json:
+                  schema: InternalServerError
+        delete:
+          description: Delete a product
+          responses:
+            200:
+            400:
+              body:
+                application/json:
+                  schema: BadRequest
+            404:
+              body:
+                application/json:
+                  schema: NotFound
+            500:
+              body:
+                application/json:        
 
-  /{categoryId}/product/{productId}:
-    get:
-      description: Get details of a product by product id
-      responses:
-        200:
-          body:
-            application/json:
-              example: |
-                {
-                  'productId': '1d6eba40-7d02-11e4-b4a9-0800200c9a66',
-                  'productName': 'NewProduct',
-                  'quantity': 5,
-                  'userId': '37e55320-7d02-11e4-b4a9-0800200c9a66',
-                  'expectedOffer': 'This is expected',
-                  'productDesc': 'Its a test prodcut',
-                  'productExpiryDate': 1407533802,
-                  'isValid': 1,
-                  'categoryId': '5b7442b0-7d02-11e4-b4a9-0800200c9a66',
-                  'lastUpdated': 1407533802
-                }
-        400:
-          body:
-            application/json:
-              schema: BadRequest
-        404:
-          body:
-            application/json:
-              schema: NotFound
-        500:
-          body:
-            application/json:
-              schema: InternalServerError      
-        
-    put:
-      description: Change the details of a product
-      body:
-        application/json:
-          example: |
-            {
-              'productId': '1d6eba40-7d02-11e4-b4a9-0800200c9a66',
-              'productName': 'NewProduct',
-              'quantity': 5,
-              'userId': '37e55320-7d02-11e4-b4a9-0800200c9a66',
-              'expectedOffer': 'This is expected',
-              'productDesc': 'Its a test prodcut',
-              'productExpiryDate': 1407533802,
-              'isValid': 1,
-              'categoryId': '5b7442b0-7d02-11e4-b4a9-0800200c9a66',
-              'lastUpdated': 1407533802
-            }
-      responses:
-        200:
-          body:
-            application/json:
-              example: |
-                {
-                  'productId': '1d6eba40-7d02-11e4-b4a9-0800200c9a66',
-                  'productName': 'NewProduct',
-                  'quantity': 5,
-                  'userId': '37e55320-7d02-11e4-b4a9-0800200c9a66',
-                  'expectedOffer': 'This is expected',
-                  'productDesc': 'Its a test prodcut',
-                  'productExpiryDate': 1407533802,
-                  'isValid': 1,
-                  'categoryId': '5b7442b0-7d02-11e4-b4a9-0800200c9a66',
-                  'lastUpdated': 1407533802
-                }
-        400:
-          body:
-            application/json:
-              schema: BadRequest
-        404:
-          body:
-            application/json:
-              schema: NotFound
-        500:
-          body:
-            application/json:
-              schema: InternalServerError
-    delete:
-      description: Delete a product
-      responses:
-        200:
-        400:
-          body:
-            application/json:
-              schema: BadRequest
-        404:
-          body:
-            application/json:
-              schema: NotFound
-        500:
-          body:
-            application/json:        
-
-  /{categoryId}/product/{productId}/offer:
-    get:
-      description: Get list of all offers made on a particular product
-      responses:
-        200:
-          body:
-            application/json:
-              example: |
-                { 
-                  'offers': [
+        /offer:
+          get:
+            description: Get list of all offers made on a particular product
+            responses:
+              200:
+                body:
+                  application/json:
+                    example: |
+                      { 
+                        'offers': [
+                          {
+                            'offerId': 'c59c6850-7d13-11e4-b4a9-0800200c9a66',
+                            'buyingQty': 2,
+                            'offeredDetails': 'This can be offered',
+                            'buyerStatus': 'Pending|Accepted|Rejected',
+                            'sellerStatus':  'Pending|Accepted|Rejected',
+                            'offerExpiry': 1407533802,
+                            'productId': 'c59c6850-7d13-11e4-b4a9-0800200c9a66',
+                            'buyerId': 'd60c6850-7d13-11e4-b4a9-0800200c9a67',
+                            'lastModified': 1407533802
+                          },
+                          {
+                            'offerId': 'c59c6850-7d13-11e4-b4a9-0800200c9a66',
+                            'buyingQty': 2,
+                            'offeredDetails': 'This can be offered',
+                            'buyerStatus': 'Pending|Accepted|Rejected',
+                            'sellerStatus':  'Pending|Accepted|Rejected',
+                            'offerExpiry': 1407533802,
+                            'productId': 'c59c6850-7d13-11e4-b4a9-0800200c9a66',
+                            'buyerId': 'd60c6850-7d13-11e4-b4a9-0800200c9a67',
+                            'lastModified': 1407533802
+                          }                    
+                        ] 
+                      }
+              400:
+                body:
+                  application/json:
+                    schema: BadRequest
+              404:
+                body:
+                  application/json:
+                    schema: NotFound
+              500:
+                body:
+                  application/json:
+                    schema: InternalServerError
+          post:
+            description: Create a new offer
+            body:
+              application/json:
+                example: |
+                  {
+                    'buyingQty': 2,
+                    'offeredDetails': 'This can be offered',
+                    'buyerStatus': 'Pending|Accepted|Rejected',
+                    'sellerStatus':  'Pending|Accepted|Rejected',
+                    'offerExpiry': 1407533802,
+                    'productId': 'c59c6850-7d13-11e4-b4a9-0800200c9a66',
+                    'buyerId': 'd60c6850-7d13-11e4-b4a9-0800200c9a67',
+                    'lastModified': 1407533802
+                  }
+            responses:
+              200:
+                body:
+                  application/json:
+                    example: |              
+                      {
+                        'offerId': 'c59c6850-7d13-11e4-b4a9-0800200c9a66',
+                        'buyingQty': 2,
+                        'offeredDetails': 'This can be offered',
+                        'buyerStatus': 'Pending|Accepted|Rejected',
+                        'sellerStatus':  'Pending|Accepted|Rejected',
+                        'offerExpiry': 1407533802,
+                        'productId': 'c59c6850-7d13-11e4-b4a9-0800200c9a66',
+                        'buyerId': 'd60c6850-7d13-11e4-b4a9-0800200c9a67',
+                        'lastModified': 1407533802
+                      }
+              400:
+                body:
+                  application/json:
+                    schema: BadRequest
+              404:
+                body:
+                  application/json:
+                    schema: NotFound
+              500:
+                body:
+                  application/json:
+                    schema: InternalServerError      
+          /{offerId}:
+            description: Get an offer based on offer id
+            get:
+              responses:
+                200:
+                  body:
+                    application/json:
+                      example: |              
+                        {
+                          'offerId': 'c59c6850-7d13-11e4-b4a9-0800200c9a66',
+                          'buyingQty': 2,
+                          'offeredDetails': 'This can be offered',
+                          'buyerStatus': 'Pending|Accepted|Rejected',
+                          'sellerStatus':  'Pending|Accepted|Rejected',
+                          'offerExpiry': 1407533802,
+                          'productId': 'c59c6850-7d13-11e4-b4a9-0800200c9a66',
+                          'buyerId': 'd60c6850-7d13-11e4-b4a9-0800200c9a67',
+                          'lastModified': 1407533802
+                        }
+                400:
+                  body:
+                    application/json:
+                      schema: BadRequest
+                404:
+                  body:
+                    application/json:
+                      schema: NotFound
+                500:
+                  body:
+                    application/json:
+                      schema: InternalServerError
+            put:
+              description: Change details of a particular offer
+              body:
+                application/json:
+                  example: |            
                     {
                       'offerId': 'c59c6850-7d13-11e4-b4a9-0800200c9a66',
                       'buyingQty': 2,
@@ -374,230 +489,116 @@ schemas:
                       'productId': 'c59c6850-7d13-11e4-b4a9-0800200c9a66',
                       'buyerId': 'd60c6850-7d13-11e4-b4a9-0800200c9a67',
                       'lastModified': 1407533802
-                    },
-                    {
-                      'offerId': 'c59c6850-7d13-11e4-b4a9-0800200c9a66',
-                      'buyingQty': 2,
-                      'offeredDetails': 'This can be offered',
-                      'buyerStatus': 'Pending|Accepted|Rejected',
-                      'sellerStatus':  'Pending|Accepted|Rejected',
-                      'offerExpiry': 1407533802,
-                      'productId': 'c59c6850-7d13-11e4-b4a9-0800200c9a66',
-                      'buyerId': 'd60c6850-7d13-11e4-b4a9-0800200c9a67',
-                      'lastModified': 1407533802
-                    }                    
-                  ] 
-                }
-        400:
-          body:
-            application/json:
-              schema: BadRequest
-        404:
-          body:
-            application/json:
-              schema: NotFound
-        500:
-          body:
-            application/json:
-              schema: InternalServerError
-    post:
-      description: Create a new offer
-      body:
-        application/json:
-          example: |
-            {
-              'buyingQty': 2,
-              'offeredDetails': 'This can be offered',
-              'buyerStatus': 'Pending|Accepted|Rejected',
-              'sellerStatus':  'Pending|Accepted|Rejected',
-              'offerExpiry': 1407533802,
-              'productId': 'c59c6850-7d13-11e4-b4a9-0800200c9a66',
-              'buyerId': 'd60c6850-7d13-11e4-b4a9-0800200c9a67',
-              'lastModified': 1407533802
-            }
-      responses:
-        200:
-          body:
-            application/json:
-              example: |              
-                {
-                  'offerId': 'c59c6850-7d13-11e4-b4a9-0800200c9a66',
-                  'buyingQty': 2,
-                  'offeredDetails': 'This can be offered',
-                  'buyerStatus': 'Pending|Accepted|Rejected',
-                  'sellerStatus':  'Pending|Accepted|Rejected',
-                  'offerExpiry': 1407533802,
-                  'productId': 'c59c6850-7d13-11e4-b4a9-0800200c9a66',
-                  'buyerId': 'd60c6850-7d13-11e4-b4a9-0800200c9a67',
-                  'lastModified': 1407533802
-                }
-        400:
-          body:
-            application/json:
-              schema: BadRequest
-        404:
-          body:
-            application/json:
-              schema: NotFound
-        500:
-          body:
-            application/json:
-              schema: InternalServerError      
-  /{categoryId}/product/{productId}/offer/{offerId}:
-    description: Get an offer based on offer id
-    get:
-      responses:
-        200:
-          body:
-            application/json:
-              example: |              
-                {
-                  'offerId': 'c59c6850-7d13-11e4-b4a9-0800200c9a66',
-                  'buyingQty': 2,
-                  'offeredDetails': 'This can be offered',
-                  'buyerStatus': 'Pending|Accepted|Rejected',
-                  'sellerStatus':  'Pending|Accepted|Rejected',
-                  'offerExpiry': 1407533802,
-                  'productId': 'c59c6850-7d13-11e4-b4a9-0800200c9a66',
-                  'buyerId': 'd60c6850-7d13-11e4-b4a9-0800200c9a67',
-                  'lastModified': 1407533802
-                }
-        400:
-          body:
-            application/json:
-              schema: BadRequest
-        404:
-          body:
-            application/json:
-              schema: NotFound
-        500:
-          body:
-            application/json:
-              schema: InternalServerError
-    put:
-      description: Change details of a particular offer
-      body:
-        application/json:
-          example: |            
-            {
-              'offerId': 'c59c6850-7d13-11e4-b4a9-0800200c9a66',
-              'buyingQty': 2,
-              'offeredDetails': 'This can be offered',
-              'buyerStatus': 'Pending|Accepted|Rejected',
-              'sellerStatus':  'Pending|Accepted|Rejected',
-              'offerExpiry': 1407533802,
-              'productId': 'c59c6850-7d13-11e4-b4a9-0800200c9a66',
-              'buyerId': 'd60c6850-7d13-11e4-b4a9-0800200c9a67',
-              'lastModified': 1407533802
-            }
-      responses:
-        200:
-          body:
-            application/json:
-              example: |              
-                {
-                  'offerId': 'c59c6850-7d13-11e4-b4a9-0800200c9a66',
-                  'buyingQty': 2,
-                  'offeredDetails': 'This can be offered',
-                  'buyerStatus': 'Pending|Accepted|Rejected',
-                  'sellerStatus':  'Pending|Accepted|Rejected',
-                  'offerExpiry': 1407533802,
-                  'productId': 'c59c6850-7d13-11e4-b4a9-0800200c9a66',
-                  'buyerId': 'd60c6850-7d13-11e4-b4a9-0800200c9a67',
-                  'lastModified': 1407533802
-                }
-        400:
-          body:
-            application/json:
-              schema: BadRequest
-        404:
-          body:
-            application/json:
-              schema: NotFound
-        500:
-          body:
-            application/json:
-              schema: InternalServerError
-    delete:
-      description: Delete an offer
-      responses:
-        200:
-        400:
-          body:
-            application/json:
-              schema: BadRequest
-        404:
-          body:
-            application/json:
-              schema: NotFound
-        500:
-          body:
-            application/json:
-  /{categoryId}/product/{productId}/offer/{offerId}/history:
-    get:
-      description: Get history of events for a given offer in reverse chronological order
-      responses:
-        200:
-          body:
-            application/json:
-              example: |              
-                {
-                  'history': [
-                    {
-                      'offerHistoryId': '4e280bb0-7d15-11e4-b4a9-0800200c9a66',
-                      'modified': 'Buyer Quantity was modified from 5 to 10',
-                      'lastModified': 1407533802,
-                      'offerId': '5f391cc0-7d15-11e4-b4a9-0800200c9a66'
-                    },
-                    {
-                      'offerHistoryId': '5g531bb0-7d15-11e4-b4a9-0800200c9a66',
-                      'modified': 'Buyer Quantity was modified from 5 to 10',
-                      'lastModified': 1407533702,
-                      'offerId': '4sd52cc0-7d15-11e4-b4a9-0800200c9a66'
-                    }                    
-                  ]
-                }
-        400:
-          body:
-            application/json:
-              schema: BadRequest
-        404:
-          body:
-            application/json:
-              schema: NotFound
-        500:
-          body:
-            application/json:
-              schema: InternalServerError
-  /{categoryId}/product/{productId}/offer/{offerId}/comment:
-    post:
-      description: Create a new comment on a given offer
-      body:
-        application/json:
-          example: |
-            {
-              'comment': 'This was commented by a user, buyer or seller at time.', 
-              'userId': 'e5a50560-7d15-11e4-b4a9-0800200c9a66'
-            }
-      responses:
-        200:
-          body:
-            application/json:
-              example: |              
-                {
-                  'commentId': 'c7f69a10-7d15-11e4-b4a9-0800200c9a66',
-                  'comment': 'This was commented by a user, buyer or seller at time.', 
-                  'userId': 'e5a50560-7d15-11e4-b4a9-0800200c9a66'
-                }
-        400:
-          body:
-            application/json:
-              schema: BadRequest
-        404:
-          body:
-            application/json:
-              schema: NotFound
-        500:
-          body:
-            application/json:
-              schema: InternalServerError
+                    }
+              responses:
+                200:
+                  body:
+                    application/json:
+                      example: |              
+                        {
+                          'offerId': 'c59c6850-7d13-11e4-b4a9-0800200c9a66',
+                          'buyingQty': 2,
+                          'offeredDetails': 'This can be offered',
+                          'buyerStatus': 'Pending|Accepted|Rejected',
+                          'sellerStatus':  'Pending|Accepted|Rejected',
+                          'offerExpiry': 1407533802,
+                          'productId': 'c59c6850-7d13-11e4-b4a9-0800200c9a66',
+                          'buyerId': 'd60c6850-7d13-11e4-b4a9-0800200c9a67',
+                          'lastModified': 1407533802
+                        }
+                400:
+                  body:
+                    application/json:
+                      schema: BadRequest
+                404:
+                  body:
+                    application/json:
+                      schema: NotFound
+                500:
+                  body:
+                    application/json:
+                      schema: InternalServerError
+            delete:
+              description: Delete an offer
+              responses:
+                200:
+                400:
+                  body:
+                    application/json:
+                      schema: BadRequest
+                404:
+                  body:
+                    application/json:
+                      schema: NotFound
+                500:
+                  body:
+                    application/json:
+                      schema: InternalServerError
+            /history:
+              get:
+                description: Get history of events for a given offer in reverse chronological order
+                responses:
+                  200:
+                    body:
+                      application/json:
+                        example: |              
+                          {
+                            'history': [
+                              {
+                                'offerHistoryId': '4e280bb0-7d15-11e4-b4a9-0800200c9a66',
+                                'modified': 'Buyer Quantity was modified from 5 to 10',
+                                'lastModified': 1407533802,
+                                'offerId': '5f391cc0-7d15-11e4-b4a9-0800200c9a66'
+                              },
+                              {
+                                'offerHistoryId': '5g531bb0-7d15-11e4-b4a9-0800200c9a66',
+                                'modified': 'Buyer Quantity was modified from 5 to 10',
+                                'lastModified': 1407533702,
+                                'offerId': '4sd52cc0-7d15-11e4-b4a9-0800200c9a66'
+                              }                    
+                            ]
+                          }
+                  400:
+                    body:
+                      application/json:
+                        schema: BadRequest
+                  404:
+                    body:
+                      application/json:
+                        schema: NotFound
+                  500:
+                    body:
+                      application/json:
+                        schema: InternalServerError
+            /comment:
+              post:
+                description: Create a new comment on a given offer
+                body:
+                  application/json:
+                    example: |
+                      {
+                        'comment': 'This was commented by a user, buyer or seller at time.', 
+                        'userId': 'e5a50560-7d15-11e4-b4a9-0800200c9a66'
+                      }
+                responses:
+                  200:
+                    body:
+                      application/json:
+                        example: |              
+                          {
+                            'commentId': 'c7f69a10-7d15-11e4-b4a9-0800200c9a66',
+                            'comment': 'This was commented by a user, buyer or seller at time.', 
+                            'userId': 'e5a50560-7d15-11e4-b4a9-0800200c9a66'
+                          }
+                  400:
+                    body:
+                      application/json:
+                        schema: BadRequest
+                  404:
+                    body:
+                      application/json:
+                        schema: NotFound
+                  500:
+                    body:
+                      application/json:
+                        schema: InternalServerError
