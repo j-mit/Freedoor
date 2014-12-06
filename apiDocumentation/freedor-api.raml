@@ -1,0 +1,66 @@
+#%RAML 0.8
+title: Freedoor Prototype
+version: v1
+baseUri: http://localhost:3000/freedor/{version}
+
+documentation: 
+  - title: About Freedoor
+    content: | 
+      Freedoor Prototype API description. CMPE 226 Project 2
+  
+schemas:
+  - BadRequest: |
+      {
+        "status": "error",
+        "errorCode": 400,
+        "errorMessage": "Bad Request"
+      }
+  - NotFound: |
+      {
+        "status": "error",
+        "errorCode": 404,
+        "errorMessage": "Not Found"
+      }
+  - InternalServerError: |
+      {
+        "status": "error",
+        "errorCode": 500,
+        "errorMessage": "Internal Server Error"
+      }
+
+/users:
+  post:
+    description: Create a new user
+    body:
+      application/json:
+        example: |
+          {
+            'firstName': 'Test',
+            'lastName': 'User',
+            'emaiId': 'Test.User@test.com',
+            'mobile': 4084084084
+          }
+    responses:
+      200:
+        body:
+          application/json:
+            example: |
+              {
+                'userId': '22f3bc90-7cf8-11e4-b4a9-0800200c9a66'
+                'firstName': 'Test',
+                'lastName': 'User',
+                'emaiId': 'Test.User@test.com',
+                'mobile': 4084084084
+              }              
+      400:
+        body:
+          application/json:
+            schema: BadRequest
+      404:
+        body:
+          application/json:
+            schema: NotFound
+      500:
+        body:
+          application/json:
+            schema: InternalServerError
