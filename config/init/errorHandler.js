@@ -7,30 +7,30 @@
 
 module.exports = function(app, env) {
 	//http status codes and errors
-	var globalErrorHandler = {};
+	var errorMessages = {};
 
 	//400 Bad request
-	globalErrorHandler.code400 = {
+	errorMessages.code400 = {
 		"status": "error",
 		"errorCode": 400,
 		"errorMessage": "Bad Request"
 	}
 
 	//404 Not found
-	globalErrorHandler.code404 = {
+	errorMessages.code404 = {
 		"status": "error",
 		"errorCode": 404,
 		"errorMessage": "Not Found"
 	}
 
 	//500 Internal server error
-	globalErrorHandler.code500 = {
+	errorMessages.code500 = {
 		"status": "error",
 		"errorCode": 500,
 		"errorMessage": "Internal Server Error"
 	}
 
 	//set the export to env
-	env.globalErrorHandler = globalErrorHandler;
+	env.errorMessages = errorMessages;
 
 }
