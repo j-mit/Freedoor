@@ -1,18 +1,15 @@
 /*
 
-	Set all routes of the application
+	Set all routes of the freedoor application
 
 */
 
-var mainController = require('../../controllers/main')
-
+var userController = require('../../controllers/userController')
 ;
 
-
 module.exports = function(app, env) {
-	
-	//set all the routes for the application
-	app.get('/', mainController.main);
-
-	app.get('/*', mainController.stub);
+	var baseurl = '/freedoor/v1';
+	//set all the routes for freedoor application
+	app.post(baseurl + '/users', userController.postUser);
+	app.get(baseurl + '/users/:user_id', userController.getUser);
 }

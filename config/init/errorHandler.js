@@ -1,6 +1,7 @@
 /*
 
 	Store all the errors handled here
+	Freedoor app
 
 */
 
@@ -10,26 +11,23 @@ module.exports = function(app, env) {
 
 	//400 Bad request
 	globalErrorHandler.code400 = {
-		error: {
-			code: 400,
-			message: "Bad request"
-		}
+		"status": "error",
+		"errorCode": 400,
+		"errorMessage": "Bad Request"
 	}
 
 	//404 Not found
 	globalErrorHandler.code404 = {
-		error: {
-			code: 404,
-			message: "Not found"
-		}
+		"status": "error",
+		"errorCode": 404,
+		"errorMessage": "Not Found"
 	}
 
 	//500 Internal server error
 	globalErrorHandler.code500 = {
-		error: {
-			code: 500,
-			message: "Internal server error"
-		}
+		"status": "error",
+		"errorCode": 500,
+		"errorMessage": "Internal Server Error"
 	}
 
 	//set the export to env

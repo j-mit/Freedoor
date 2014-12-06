@@ -1,7 +1,7 @@
 {
-  "default": {
     "server": {
-      "httpSecure": false
+      "httpSecure": false,
+      "debug": false
     },
     "memcached": {
       "locations": "127.0.0.1:11211",
@@ -9,7 +9,6 @@
       "options":{}
     },
     "mongo": {
-      "url": "mongodb://localhost/social-network"
+      "url": "mongodb://localhost/freedoor"
     }
-  }
 }
