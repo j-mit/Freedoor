@@ -1,6 +1,6 @@
 /*
  *
- * Database functionalities for user objects
+ * Database functionalities for category objects
  *
  */
 
