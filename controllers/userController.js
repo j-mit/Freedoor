@@ -1,11 +1,5 @@
 /*
- * Users controller file
- */
-
-/*
- *
- * Controller file for user object
- *
+ *  http handlers for user objects
  */
 
 var env = require("../config/environment")
