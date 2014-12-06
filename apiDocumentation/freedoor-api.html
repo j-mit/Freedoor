@@ -1,0 +1,584 @@
+<!DOCTYPE HTML><html><head><title>Freedoor Prototype API documentation</title><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta name="generator" content="https://github.com/kevinrenskers/raml2html 1.0.5"><link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css"><link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.1/styles/default.min.css"><script type="text/javascript" src="http://code.jquery.com/jquery-1.11.0.min.js"></script><script type="text/javascript" src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script><script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.1/highlight.min.js"></script><script type="text/javascript">
+        $(document).ready(function() {
+            $('.page-header pre code, .top-resource-description pre code').each(function(i, block) {
+                hljs.highlightBlock(block);
+            });
+
+            $('[data-toggle]').click(function() {
+                var selector = $(this).data('target') + ' pre code';
+                $(selector).each(function(i, block) {
+                    hljs.highlightBlock(block);
+                });
+            });
+        });
+    </script><style>
+        .hljs {
+            background: transparent;
+        }
+        .parent {
+            color: #999;
+        }
+        .list-group-item > .badge {
+            float: none;
+            margin-right: 6px;
+        }
+        .panel-title > .methods {
+            float: right;
+        }
+        .badge {
+            border-radius: 0;
+            text-transform: uppercase;
+            width: 70px;
+            font-weight: normal;
+            color: #f3f3f6;
+            line-height: normal;
+        }
+        .badge_get {
+            background-color: #63a8e2;
+        }
+        .badge_post {
+            background-color: #6cbd7d;
+        }
+        .badge_put {
+            background-color: #22bac4;
+        }
+        .badge_delete {
+            background-color: #d26460;
+        }
+        .list-group, .panel-group {
+            margin-bottom: 0;
+        }
+        .panel-group .panel+.panel-white {
+            margin-top: 0;
+        }
+        .panel-group .panel-white {
+            border-bottom: 1px solid #F5F5F5;
+            border-radius: 0;
+        }
+        .panel-white:last-child {
+            border-bottom-color: white;
+            -webkit-box-shadow: none;
+            box-shadow: none;
+        }
+        .panel-white .panel-heading {
+            background: white;
+        }
+        .tab-pane ul {
+            padding-left: 2em;
+        }
+        .tab-pane h2 {
+            font-size: 1.2em;
+            padding-bottom: 4px;
+            border-bottom: 1px solid #ddd;
+        }
+        .tab-pane h3 {
+            font-size: 1.1em;
+        }
+        .tab-content {
+            border-left: 1px solid #ddd;
+            border-right: 1px solid #ddd;
+            border-bottom: 1px solid #ddd;
+            padding: 10px;
+        }
+        #sidebar {
+            margin-top: 30px;
+        }
+        .top-resource-description {
+            border-bottom: 1px solid #ddd;
+            background: #fcfcfc;
+            padding: 15px 15px 0 15px;
+            margin: -15px -15px 10px -15px;
+        }
+        .resource-description {
+            border-bottom: 1px solid #fcfcfc;
+            background: #fcfcfc;
+            padding: 15px 15px 0 15px;
+            margin: -15px -15px 10px -15px;
+        }
+        .resource-description p:last-child {
+            margin: 0;
+        }
+        .list-group .badge {
+            float: left;
+        }
+        .method_description {
+            margin-left: 85px;
+        }
+        .method_description p:last-child {
+            margin: 0;
+        }
+        .list-group-item {
+            cursor: pointer;
+        }
+        .list-group-item:hover {
+            background-color: #f5f5f5;
+        }
+    </style></head><body data-spy="scroll" data-target="#sidebar"><div class="container"><div class="row"><div class="col-md-9" role="main"><div class="page-header"><h1>Freedoor Prototype API documentation <small>version v1</small></h1><p>http://localhost:3000/freedor/v1</p><h3 id="About-Freedoor"><a href="#About-Freedoor">About Freedoor</a></h3><p>Freedoor Prototype API description. CMPE 226 Project 2</p></div><div class="panel panel-default"><div class="panel-heading"><h3 id="_users" class="panel-title">/users</h3></div><div class="panel-body"><div class="panel-group"><div class="panel panel-white"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel__users"><span class="parent"></span>/users</a> <span class="methods"><a href="#" data-toggle="modal" data-target="#_users_post"><span class="badge badge_post">post</span></a></span></h4></div><div id="panel__users" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div data-toggle="modal" data-target="#_users_post" class="list-group-item"><span class="badge badge_post">post</span><div class="method_description"><p>Create a new user</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="_users_post"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_post">post</span> <span class="parent"></span>/users</h4></div><div class="modal-body"><div class="alert alert-info"><p>Create a new user</p></div><ul class="nav nav-tabs"><li class="active"><a href="#_users_post_request" data-toggle="tab">Request</a></li><li><a href="#_users_post_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="_users_post_request"><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Example</strong>:</p><pre><code>{
+  &#x27;firstName&#x27;: &#x27;Test&#x27;,
+  &#x27;lastName&#x27;: &#x27;User&#x27;,
+  &#x27;emaiId&#x27;: &#x27;Test.User@test.com&#x27;,
+  &#x27;mobile&#x27;: 4084084084
+}
+</code></pre></div><div class="tab-pane" id="_users_post_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Example</strong>:</p><pre><code>{
+  &#x27;userId&#x27;: &#x27;22f3bc90-7cf8-11e4-b4a9-0800200c9a66&#x27;
+  &#x27;firstName&#x27;: &#x27;Test&#x27;,
+  &#x27;lastName&#x27;: &#x27;User&#x27;,
+  &#x27;emaiId&#x27;: &#x27;Test.User@test.com&#x27;,
+  &#x27;mobile&#x27;: 4084084084
+}              
+</code></pre><h2>HTTP status code <a href="http://httpstatus.es/400" target="_blank">400</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
+  "status": "error",
+  "errorCode": 400,
+  "errorMessage": "Bad Request"
+}
+</code></pre><h2>HTTP status code <a href="http://httpstatus.es/404" target="_blank">404</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
+  "status": "error",
+  "errorCode": 404,
+  "errorMessage": "Not Found"
+}
+</code></pre><h2>HTTP status code <a href="http://httpstatus.es/500" target="_blank">500</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
+  "status": "error",
+  "errorCode": 500,
+  "errorMessage": "Internal Server Error"
+}
+</code></pre></div></div></div></div></div></div></div><div class="panel panel-white"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel__users__userId_"><span class="parent">/users</span>/{userId}</a> <span class="methods"><a href="#" data-toggle="modal" data-target="#_users__userId__get"><span class="badge badge_get">get</span></a></span></h4></div><div id="panel__users__userId_" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div data-toggle="modal" data-target="#_users__userId__get" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"><p>Get the details of a user</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="_users__userId__get"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent">/users</span>/{userId}</h4></div><div class="modal-body"><div class="alert alert-info"><p>Get the details of a user</p></div><ul class="nav nav-tabs"><li class="active"><a href="#_users__userId__get_request" data-toggle="tab">Request</a></li><li><a href="#_users__userId__get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="_users__userId__get_request"><h3>URI Parameters</h3><ul><li><strong>userId</strong>: <em>required (string)</em></li></ul></div><div class="tab-pane" id="_users__userId__get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Example</strong>:</p><pre><code>{
+  &#x27;userId&#x27;: &#x27;22f3bc90-7cf8-11e4-b4a9-0800200c9a66&#x27;
+  &#x27;firstName&#x27;: &#x27;Test&#x27;,
+  &#x27;lastName&#x27;: &#x27;User&#x27;,
+  &#x27;emaiId&#x27;: &#x27;Test.User@test.com&#x27;,
+  &#x27;mobile&#x27;: 4084084084
+}              
+</code></pre><h2>HTTP status code <a href="http://httpstatus.es/400" target="_blank">400</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
+  "status": "error",
+  "errorCode": 400,
+  "errorMessage": "Bad Request"
+}
+</code></pre><h2>HTTP status code <a href="http://httpstatus.es/404" target="_blank">404</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
+  "status": "error",
+  "errorCode": 404,
+  "errorMessage": "Not Found"
+}
+</code></pre><h2>HTTP status code <a href="http://httpstatus.es/500" target="_blank">500</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
+  "status": "error",
+  "errorCode": 500,
+  "errorMessage": "Internal Server Error"
+}
+</code></pre></div></div></div></div></div></div></div></div></div></div><div class="panel panel-default"><div class="panel-heading"><h3 id="_category" class="panel-title">/category</h3></div><div class="panel-body"><div class="panel-group"><div class="panel panel-white"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel__category"><span class="parent"></span>/category</a> <span class="methods"><a href="#" data-toggle="modal" data-target="#_category_get"><span class="badge badge_get">get</span></a> <a href="#" data-toggle="modal" data-target="#_category_post"><span class="badge badge_post">post</span></a></span></h4></div><div id="panel__category" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div data-toggle="modal" data-target="#_category_get" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"><p>Get the list of all categories in the system</p></div><div class="clearfix"></div></div><div data-toggle="modal" data-target="#_category_post" class="list-group-item"><span class="badge badge_post">post</span><div class="method_description"><p>Create a new category</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="_category_get"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent"></span>/category</h4></div><div class="modal-body"><div class="alert alert-info"><p>Get the list of all categories in the system</p></div><ul class="nav nav-tabs"><li class="active"><a href="#_category_get_request" data-toggle="tab">Request</a></li><li><a href="#_category_get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="_category_get_request"></div><div class="tab-pane" id="_category_get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Example</strong>:</p><pre><code>{ 
+  &#x27;categories&#x27; : [ 
+    {
+      &#x27;categoryId&#x27;: &#x27;178e9610-7d00-11e4-b4a9-0800200c9a66&#x27;,
+      &#x27;categoryName&#x27;: &#x27;Electronics&#x27;
+    },
+    {
+      &#x27;categoryId&#x27;: &#x27;27e26d20-7d00-11e4-b4a9-0800200c9a66&#x27;,
+      &#x27;categoryName&#x27;: &#x27;Home&#x27;
+    },                  
+  ]
+}
+</code></pre><h2>HTTP status code <a href="http://httpstatus.es/400" target="_blank">400</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
+  "status": "error",
+  "errorCode": 400,
+  "errorMessage": "Bad Request"
+}
+</code></pre><h2>HTTP status code <a href="http://httpstatus.es/404" target="_blank">404</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
+  "status": "error",
+  "errorCode": 404,
+  "errorMessage": "Not Found"
+}
+</code></pre><h2>HTTP status code <a href="http://httpstatus.es/500" target="_blank">500</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
+  "status": "error",
+  "errorCode": 500,
+  "errorMessage": "Internal Server Error"
+}
+</code></pre></div></div></div></div></div></div><div class="modal fade" tabindex="0" id="_category_post"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_post">post</span> <span class="parent"></span>/category</h4></div><div class="modal-body"><div class="alert alert-info"><p>Create a new category</p></div><ul class="nav nav-tabs"><li class="active"><a href="#_category_post_request" data-toggle="tab">Request</a></li><li><a href="#_category_post_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="_category_post_request"><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Example</strong>:</p><pre><code>{
+  &#x27;categoryName&#x27;: &#x27;Automobiles&#x27;
+}
+</code></pre></div><div class="tab-pane" id="_category_post_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Example</strong>:</p><pre><code>{
+  &#x27;categoryId&#x27;: &#x27;733f2e70-7d00-11e4-b4a9-0800200c9a66&#x27;,
+  &#x27;categoryName&#x27;: &#x27;Automobiles&#x27;
+}
+</code></pre><h2>HTTP status code <a href="http://httpstatus.es/400" target="_blank">400</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
+  "status": "error",
+  "errorCode": 400,
+  "errorMessage": "Bad Request"
+}
+</code></pre><h2>HTTP status code <a href="http://httpstatus.es/404" target="_blank">404</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
+  "status": "error",
+  "errorCode": 404,
+  "errorMessage": "Not Found"
+}
+</code></pre><h2>HTTP status code <a href="http://httpstatus.es/500" target="_blank">500</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
+  "status": "error",
+  "errorCode": 500,
+  "errorMessage": "Internal Server Error"
+}
+</code></pre></div></div></div></div></div></div></div><div class="panel panel-white"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel__category__categoryId_"><span class="parent">/category</span>/{categoryId}</a> <span class="methods"><a href="#" data-toggle="modal" data-target="#_category__categoryId__get"><span class="badge badge_get">get</span></a></span></h4></div><div id="panel__category__categoryId_" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div data-toggle="modal" data-target="#_category__categoryId__get" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"><p>Get a particular category by category id</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="_category__categoryId__get"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent">/category</span>/{categoryId}</h4></div><div class="modal-body"><div class="alert alert-info"><p>Get a particular category by category id</p></div><ul class="nav nav-tabs"><li class="active"><a href="#_category__categoryId__get_request" data-toggle="tab">Request</a></li><li><a href="#_category__categoryId__get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="_category__categoryId__get_request"><h3>URI Parameters</h3><ul><li><strong>categoryId</strong>: <em>required (string)</em></li></ul></div><div class="tab-pane" id="_category__categoryId__get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Example</strong>:</p><pre><code>{
+  &#x27;categoryId&#x27;: &#x27;733f2e70-7d00-11e4-b4a9-0800200c9a66&#x27;,
+  &#x27;categoryName&#x27;: &#x27;Automobiles&#x27;
+}
+</code></pre><h2>HTTP status code <a href="http://httpstatus.es/400" target="_blank">400</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
+  "status": "error",
+  "errorCode": 400,
+  "errorMessage": "Bad Request"
+}
+</code></pre><h2>HTTP status code <a href="http://httpstatus.es/404" target="_blank">404</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
+  "status": "error",
+  "errorCode": 404,
+  "errorMessage": "Not Found"
+}
+</code></pre><h2>HTTP status code <a href="http://httpstatus.es/500" target="_blank">500</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
+  "status": "error",
+  "errorCode": 500,
+  "errorMessage": "Internal Server Error"
+}
+</code></pre></div></div></div></div></div></div></div><div class="panel panel-white"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel__category__categoryId__product"><span class="parent">/category</span>/{categoryId}/product</a> <span class="methods"><a href="#" data-toggle="modal" data-target="#_category__categoryId__product_get"><span class="badge badge_get">get</span></a> <a href="#" data-toggle="modal" data-target="#_category__categoryId__product_post"><span class="badge badge_post">post</span></a></span></h4></div><div id="panel__category__categoryId__product" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div data-toggle="modal" data-target="#_category__categoryId__product_get" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"><p>Get list of all products by category id</p></div><div class="clearfix"></div></div><div data-toggle="modal" data-target="#_category__categoryId__product_post" class="list-group-item"><span class="badge badge_post">post</span><div class="method_description"><p>Create a new product in a particular category</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="_category__categoryId__product_get"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent">/category</span>/{categoryId}/product</h4></div><div class="modal-body"><div class="alert alert-info"><p>Get list of all products by category id</p></div><ul class="nav nav-tabs"><li class="active"><a href="#_category__categoryId__product_get_request" data-toggle="tab">Request</a></li><li><a href="#_category__categoryId__product_get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="_category__categoryId__product_get_request"><h3>URI Parameters</h3><ul><li><strong>categoryId</strong>: <em>required (string)</em></li></ul></div><div class="tab-pane" id="_category__categoryId__product_get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Example</strong>:</p><pre><code>{ 
+  &#x27;products&#x27;: [ 
+    {
+      &#x27;productId&#x27;: &#x27;1d6eba40-7d02-11e4-b4a9-0800200c9a66&#x27;,
+      &#x27;productName&#x27;: &#x27;NewProduct&#x27;,
+      &#x27;quantity&#x27;: 5,
+      &#x27;userId&#x27;: &#x27;37e55320-7d02-11e4-b4a9-0800200c9a66&#x27;,
+      &#x27;expectedOffer&#x27;: &#x27;This is expected&#x27;,
+      &#x27;productDesc&#x27;: &#x27;Its a test prodcut&#x27;,
+      &#x27;productExpiryDate&#x27;: 1407533802,
+      &#x27;isValid&#x27;: 1,
+      &#x27;categoryId&#x27;: &#x27;5b7442b0-7d02-11e4-b4a9-0800200c9a66&#x27;,
+      &#x27;lastUpdated&#x27;: 1407533802
+    }
+  ]
+}
+</code></pre><h2>HTTP status code <a href="http://httpstatus.es/400" target="_blank">400</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
+  "status": "error",
+  "errorCode": 400,
+  "errorMessage": "Bad Request"
+}
+</code></pre><h2>HTTP status code <a href="http://httpstatus.es/404" target="_blank">404</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
+  "status": "error",
+  "errorCode": 404,
+  "errorMessage": "Not Found"
+}
+</code></pre><h2>HTTP status code <a href="http://httpstatus.es/500" target="_blank">500</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
+  "status": "error",
+  "errorCode": 500,
+  "errorMessage": "Internal Server Error"
+}
+</code></pre></div></div></div></div></div></div><div class="modal fade" tabindex="0" id="_category__categoryId__product_post"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_post">post</span> <span class="parent">/category</span>/{categoryId}/product</h4></div><div class="modal-body"><div class="alert alert-info"><p>Create a new product in a particular category</p></div><ul class="nav nav-tabs"><li class="active"><a href="#_category__categoryId__product_post_request" data-toggle="tab">Request</a></li><li><a href="#_category__categoryId__product_post_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="_category__categoryId__product_post_request"><h3>URI Parameters</h3><ul><li><strong>categoryId</strong>: <em>required (string)</em></li></ul><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Example</strong>:</p><pre><code>{
+  &#x27;productName&#x27;: &#x27;NewProduct&#x27;,
+  &#x27;quantity&#x27;: 5,
+  &#x27;userId&#x27;: &#x27;37e55320-7d02-11e4-b4a9-0800200c9a66&#x27;,
+  &#x27;expectedOffer&#x27;: &#x27;This is expected&#x27;,
+  &#x27;productDesc&#x27;: &#x27;Its a test prodcut&#x27;,
+  &#x27;productExpiryDate&#x27;: 1407533802,
+  &#x27;isValid&#x27;: 1,
+  &#x27;categoryId&#x27;: &#x27;5b7442b0-7d02-11e4-b4a9-0800200c9a66&#x27;,
+  &#x27;lastUpdated&#x27;: 1407533802
+}
+</code></pre></div><div class="tab-pane" id="_category__categoryId__product_post_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Example</strong>:</p><pre><code>{
+  &#x27;productId&#x27;: &#x27;1d6eba40-7d02-11e4-b4a9-0800200c9a66&#x27;,
+  &#x27;productName&#x27;: &#x27;NewProduct&#x27;,
+  &#x27;quantity&#x27;: 5,
+  &#x27;userId&#x27;: &#x27;37e55320-7d02-11e4-b4a9-0800200c9a66&#x27;,
+  &#x27;expectedOffer&#x27;: &#x27;This is expected&#x27;,
+  &#x27;productDesc&#x27;: &#x27;Its a test prodcut&#x27;,
+  &#x27;productExpiryDate&#x27;: 1407533802,
+  &#x27;isValid&#x27;: 1,
+  &#x27;categoryId&#x27;: &#x27;5b7442b0-7d02-11e4-b4a9-0800200c9a66&#x27;,
+  &#x27;lastUpdated&#x27;: 1407533802
+}
+</code></pre><h2>HTTP status code <a href="http://httpstatus.es/400" target="_blank">400</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
+  "status": "error",
+  "errorCode": 400,
+  "errorMessage": "Bad Request"
+}
+</code></pre><h2>HTTP status code <a href="http://httpstatus.es/404" target="_blank">404</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
+  "status": "error",
+  "errorCode": 404,
+  "errorMessage": "Not Found"
+}
+</code></pre><h2>HTTP status code <a href="http://httpstatus.es/500" target="_blank">500</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
+  "status": "error",
+  "errorCode": 500,
+  "errorMessage": "Internal Server Error"
+}
+</code></pre></div></div></div></div></div></div></div><div class="panel panel-white"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel__category__categoryId__product__productId_"><span class="parent">/category</span>/{categoryId}/product/{productId}</a> <span class="methods"><a href="#" data-toggle="modal" data-target="#_category__categoryId__product__productId__get"><span class="badge badge_get">get</span></a> <a href="#" data-toggle="modal" data-target="#_category__categoryId__product__productId__put"><span class="badge badge_put">put</span></a> <a href="#" data-toggle="modal" data-target="#_category__categoryId__product__productId__delete"><span class="badge badge_delete">delete</span></a></span></h4></div><div id="panel__category__categoryId__product__productId_" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div data-toggle="modal" data-target="#_category__categoryId__product__productId__get" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"><p>Get details of a product by product id</p></div><div class="clearfix"></div></div><div data-toggle="modal" data-target="#_category__categoryId__product__productId__put" class="list-group-item"><span class="badge badge_put">put</span><div class="method_description"><p>Change the details of a product</p></div><div class="clearfix"></div></div><div data-toggle="modal" data-target="#_category__categoryId__product__productId__delete" class="list-group-item"><span class="badge badge_delete">delete</span><div class="method_description"><p>Delete a product</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="_category__categoryId__product__productId__get"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent">/category</span>/{categoryId}/product/{productId}</h4></div><div class="modal-body"><div class="alert alert-info"><p>Get details of a product by product id</p></div><ul class="nav nav-tabs"><li class="active"><a href="#_category__categoryId__product__productId__get_request" data-toggle="tab">Request</a></li><li><a href="#_category__categoryId__product__productId__get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="_category__categoryId__product__productId__get_request"><h3>URI Parameters</h3><ul><li><strong>categoryId</strong>: <em>required (string)</em></li><li><strong>productId</strong>: <em>required (string)</em></li></ul></div><div class="tab-pane" id="_category__categoryId__product__productId__get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Example</strong>:</p><pre><code>{
+  &#x27;productId&#x27;: &#x27;1d6eba40-7d02-11e4-b4a9-0800200c9a66&#x27;,
+  &#x27;productName&#x27;: &#x27;NewProduct&#x27;,
+  &#x27;quantity&#x27;: 5,
+  &#x27;userId&#x27;: &#x27;37e55320-7d02-11e4-b4a9-0800200c9a66&#x27;,
+  &#x27;expectedOffer&#x27;: &#x27;This is expected&#x27;,
+  &#x27;productDesc&#x27;: &#x27;Its a test prodcut&#x27;,
+  &#x27;productExpiryDate&#x27;: 1407533802,
+  &#x27;isValid&#x27;: 1,
+  &#x27;categoryId&#x27;: &#x27;5b7442b0-7d02-11e4-b4a9-0800200c9a66&#x27;,
+  &#x27;lastUpdated&#x27;: 1407533802
+}
+</code></pre><h2>HTTP status code <a href="http://httpstatus.es/400" target="_blank">400</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
+  "status": "error",
+  "errorCode": 400,
+  "errorMessage": "Bad Request"
+}
+</code></pre><h2>HTTP status code <a href="http://httpstatus.es/404" target="_blank">404</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
+  "status": "error",
+  "errorCode": 404,
+  "errorMessage": "Not Found"
+}
+</code></pre><h2>HTTP status code <a href="http://httpstatus.es/500" target="_blank">500</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
+  "status": "error",
+  "errorCode": 500,
+  "errorMessage": "Internal Server Error"
+}
+</code></pre></div></div></div></div></div></div><div class="modal fade" tabindex="0" id="_category__categoryId__product__productId__put"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_put">put</span> <span class="parent">/category</span>/{categoryId}/product/{productId}</h4></div><div class="modal-body"><div class="alert alert-info"><p>Change the details of a product</p></div><ul class="nav nav-tabs"><li class="active"><a href="#_category__categoryId__product__productId__put_request" data-toggle="tab">Request</a></li><li><a href="#_category__categoryId__product__productId__put_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="_category__categoryId__product__productId__put_request"><h3>URI Parameters</h3><ul><li><strong>categoryId</strong>: <em>required (string)</em></li><li><strong>productId</strong>: <em>required (string)</em></li></ul><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Example</strong>:</p><pre><code>{
+  &#x27;productId&#x27;: &#x27;1d6eba40-7d02-11e4-b4a9-0800200c9a66&#x27;,
+  &#x27;productName&#x27;: &#x27;NewProduct&#x27;,
+  &#x27;quantity&#x27;: 5,
+  &#x27;userId&#x27;: &#x27;37e55320-7d02-11e4-b4a9-0800200c9a66&#x27;,
+  &#x27;expectedOffer&#x27;: &#x27;This is expected&#x27;,
+  &#x27;productDesc&#x27;: &#x27;Its a test prodcut&#x27;,
+  &#x27;productExpiryDate&#x27;: 1407533802,
+  &#x27;isValid&#x27;: 1,
+  &#x27;categoryId&#x27;: &#x27;5b7442b0-7d02-11e4-b4a9-0800200c9a66&#x27;,
+  &#x27;lastUpdated&#x27;: 1407533802
+}
+</code></pre></div><div class="tab-pane" id="_category__categoryId__product__productId__put_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Example</strong>:</p><pre><code>{
+  &#x27;productId&#x27;: &#x27;1d6eba40-7d02-11e4-b4a9-0800200c9a66&#x27;,
+  &#x27;productName&#x27;: &#x27;NewProduct&#x27;,
+  &#x27;quantity&#x27;: 5,
+  &#x27;userId&#x27;: &#x27;37e55320-7d02-11e4-b4a9-0800200c9a66&#x27;,
+  &#x27;expectedOffer&#x27;: &#x27;This is expected&#x27;,
+  &#x27;productDesc&#x27;: &#x27;Its a test prodcut&#x27;,
+  &#x27;productExpiryDate&#x27;: 1407533802,
+  &#x27;isValid&#x27;: 1,
+  &#x27;categoryId&#x27;: &#x27;5b7442b0-7d02-11e4-b4a9-0800200c9a66&#x27;,
+  &#x27;lastUpdated&#x27;: 1407533802
+}
+</code></pre><h2>HTTP status code <a href="http://httpstatus.es/400" target="_blank">400</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
+  "status": "error",
+  "errorCode": 400,
+  "errorMessage": "Bad Request"
+}
+</code></pre><h2>HTTP status code <a href="http://httpstatus.es/404" target="_blank">404</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
+  "status": "error",
+  "errorCode": 404,
+  "errorMessage": "Not Found"
+}
+</code></pre><h2>HTTP status code <a href="http://httpstatus.es/500" target="_blank">500</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
+  "status": "error",
+  "errorCode": 500,
+  "errorMessage": "Internal Server Error"
+}
+</code></pre></div></div></div></div></div></div><div class="modal fade" tabindex="0" id="_category__categoryId__product__productId__delete"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_delete">delete</span> <span class="parent">/category</span>/{categoryId}/product/{productId}</h4></div><div class="modal-body"><div class="alert alert-info"><p>Delete a product</p></div><ul class="nav nav-tabs"><li class="active"><a href="#_category__categoryId__product__productId__delete_request" data-toggle="tab">Request</a></li><li><a href="#_category__categoryId__product__productId__delete_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="_category__categoryId__product__productId__delete_request"><h3>URI Parameters</h3><ul><li><strong>categoryId</strong>: <em>required (string)</em></li><li><strong>productId</strong>: <em>required (string)</em></li></ul></div><div class="tab-pane" id="_category__categoryId__product__productId__delete_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h2>HTTP status code <a href="http://httpstatus.es/400" target="_blank">400</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
+  "status": "error",
+  "errorCode": 400,
+  "errorMessage": "Bad Request"
+}
+</code></pre><h2>HTTP status code <a href="http://httpstatus.es/404" target="_blank">404</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
+  "status": "error",
+  "errorCode": 404,
+  "errorMessage": "Not Found"
+}
+</code></pre><h2>HTTP status code <a href="http://httpstatus.es/500" target="_blank">500</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p></div></div></div></div></div></div></div><div class="panel panel-white"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel__category__categoryId__product__productId__offer"><span class="parent">/category</span>/{categoryId}/product/{productId}/offer</a> <span class="methods"><a href="#" data-toggle="modal" data-target="#_category__categoryId__product__productId__offer_get"><span class="badge badge_get">get</span></a> <a href="#" data-toggle="modal" data-target="#_category__categoryId__product__productId__offer_post"><span class="badge badge_post">post</span></a></span></h4></div><div id="panel__category__categoryId__product__productId__offer" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div data-toggle="modal" data-target="#_category__categoryId__product__productId__offer_get" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"><p>Get list of all offers made on a particular product</p></div><div class="clearfix"></div></div><div data-toggle="modal" data-target="#_category__categoryId__product__productId__offer_post" class="list-group-item"><span class="badge badge_post">post</span><div class="method_description"><p>Create a new offer</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="_category__categoryId__product__productId__offer_get"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent">/category</span>/{categoryId}/product/{productId}/offer</h4></div><div class="modal-body"><div class="alert alert-info"><p>Get list of all offers made on a particular product</p></div><ul class="nav nav-tabs"><li class="active"><a href="#_category__categoryId__product__productId__offer_get_request" data-toggle="tab">Request</a></li><li><a href="#_category__categoryId__product__productId__offer_get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="_category__categoryId__product__productId__offer_get_request"><h3>URI Parameters</h3><ul><li><strong>categoryId</strong>: <em>required (string)</em></li><li><strong>productId</strong>: <em>required (string)</em></li></ul></div><div class="tab-pane" id="_category__categoryId__product__productId__offer_get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Example</strong>:</p><pre><code>{ 
+  &#x27;offers&#x27;: [
+    {
+      &#x27;offerId&#x27;: &#x27;c59c6850-7d13-11e4-b4a9-0800200c9a66&#x27;,
+      &#x27;buyingQty&#x27;: 2,
+      &#x27;offeredDetails&#x27;: &#x27;This can be offered&#x27;,
+      &#x27;buyerStatus&#x27;: &#x27;Pending|Accepted|Rejected&#x27;,
+      &#x27;sellerStatus&#x27;:  &#x27;Pending|Accepted|Rejected&#x27;,
+      &#x27;offerExpiry&#x27;: 1407533802,
+      &#x27;productId&#x27;: &#x27;c59c6850-7d13-11e4-b4a9-0800200c9a66&#x27;,
+      &#x27;buyerId&#x27;: &#x27;d60c6850-7d13-11e4-b4a9-0800200c9a67&#x27;,
+      &#x27;lastModified&#x27;: 1407533802
+    },
+    {
+      &#x27;offerId&#x27;: &#x27;c59c6850-7d13-11e4-b4a9-0800200c9a66&#x27;,
+      &#x27;buyingQty&#x27;: 2,
+      &#x27;offeredDetails&#x27;: &#x27;This can be offered&#x27;,
+      &#x27;buyerStatus&#x27;: &#x27;Pending|Accepted|Rejected&#x27;,
+      &#x27;sellerStatus&#x27;:  &#x27;Pending|Accepted|Rejected&#x27;,
+      &#x27;offerExpiry&#x27;: 1407533802,
+      &#x27;productId&#x27;: &#x27;c59c6850-7d13-11e4-b4a9-0800200c9a66&#x27;,
+      &#x27;buyerId&#x27;: &#x27;d60c6850-7d13-11e4-b4a9-0800200c9a67&#x27;,
+      &#x27;lastModified&#x27;: 1407533802
+    }                    
+  ] 
+}
+</code></pre><h2>HTTP status code <a href="http://httpstatus.es/400" target="_blank">400</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
+  "status": "error",
+  "errorCode": 400,
+  "errorMessage": "Bad Request"
+}
+</code></pre><h2>HTTP status code <a href="http://httpstatus.es/404" target="_blank">404</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
+  "status": "error",
+  "errorCode": 404,
+  "errorMessage": "Not Found"
+}
+</code></pre><h2>HTTP status code <a href="http://httpstatus.es/500" target="_blank">500</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
+  "status": "error",
+  "errorCode": 500,
+  "errorMessage": "Internal Server Error"
+}
+</code></pre></div></div></div></div></div></div><div class="modal fade" tabindex="0" id="_category__categoryId__product__productId__offer_post"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_post">post</span> <span class="parent">/category</span>/{categoryId}/product/{productId}/offer</h4></div><div class="modal-body"><div class="alert alert-info"><p>Create a new offer</p></div><ul class="nav nav-tabs"><li class="active"><a href="#_category__categoryId__product__productId__offer_post_request" data-toggle="tab">Request</a></li><li><a href="#_category__categoryId__product__productId__offer_post_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="_category__categoryId__product__productId__offer_post_request"><h3>URI Parameters</h3><ul><li><strong>categoryId</strong>: <em>required (string)</em></li><li><strong>productId</strong>: <em>required (string)</em></li></ul><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Example</strong>:</p><pre><code>{
+  &#x27;buyingQty&#x27;: 2,
+  &#x27;offeredDetails&#x27;: &#x27;This can be offered&#x27;,
+  &#x27;buyerStatus&#x27;: &#x27;Pending|Accepted|Rejected&#x27;,
+  &#x27;sellerStatus&#x27;:  &#x27;Pending|Accepted|Rejected&#x27;,
+  &#x27;offerExpiry&#x27;: 1407533802,
+  &#x27;productId&#x27;: &#x27;c59c6850-7d13-11e4-b4a9-0800200c9a66&#x27;,
+  &#x27;buyerId&#x27;: &#x27;d60c6850-7d13-11e4-b4a9-0800200c9a67&#x27;,
+  &#x27;lastModified&#x27;: 1407533802
+}
+</code></pre></div><div class="tab-pane" id="_category__categoryId__product__productId__offer_post_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Example</strong>:</p><pre><code>{
+  &#x27;offerId&#x27;: &#x27;c59c6850-7d13-11e4-b4a9-0800200c9a66&#x27;,
+  &#x27;buyingQty&#x27;: 2,
+  &#x27;offeredDetails&#x27;: &#x27;This can be offered&#x27;,
+  &#x27;buyerStatus&#x27;: &#x27;Pending|Accepted|Rejected&#x27;,
+  &#x27;sellerStatus&#x27;:  &#x27;Pending|Accepted|Rejected&#x27;,
+  &#x27;offerExpiry&#x27;: 1407533802,
+  &#x27;productId&#x27;: &#x27;c59c6850-7d13-11e4-b4a9-0800200c9a66&#x27;,
+  &#x27;buyerId&#x27;: &#x27;d60c6850-7d13-11e4-b4a9-0800200c9a67&#x27;,
+  &#x27;lastModified&#x27;: 1407533802
+}
+</code></pre><h2>HTTP status code <a href="http://httpstatus.es/400" target="_blank">400</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
+  "status": "error",
+  "errorCode": 400,
+  "errorMessage": "Bad Request"
+}
+</code></pre><h2>HTTP status code <a href="http://httpstatus.es/404" target="_blank">404</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
+  "status": "error",
+  "errorCode": 404,
+  "errorMessage": "Not Found"
+}
+</code></pre><h2>HTTP status code <a href="http://httpstatus.es/500" target="_blank">500</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
+  "status": "error",
+  "errorCode": 500,
+  "errorMessage": "Internal Server Error"
+}
+</code></pre></div></div></div></div></div></div></div><div class="panel panel-white"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel__category__categoryId__product__productId__offer__offerId_"><span class="parent">/category</span>/{categoryId}/product/{productId}/offer/{offerId}</a> <span class="methods"><a href="#" data-toggle="modal" data-target="#_category__categoryId__product__productId__offer__offerId__get"><span class="badge badge_get">get</span></a> <a href="#" data-toggle="modal" data-target="#_category__categoryId__product__productId__offer__offerId__put"><span class="badge badge_put">put</span></a> <a href="#" data-toggle="modal" data-target="#_category__categoryId__product__productId__offer__offerId__delete"><span class="badge badge_delete">delete</span></a></span></h4></div><div id="panel__category__categoryId__product__productId__offer__offerId_" class="panel-collapse collapse"><div class="panel-body"><div class="resource-description"><p>Get an offer based on offer id</p></div><div class="list-group"><div data-toggle="modal" data-target="#_category__categoryId__product__productId__offer__offerId__get" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"></div><div class="clearfix"></div></div><div data-toggle="modal" data-target="#_category__categoryId__product__productId__offer__offerId__put" class="list-group-item"><span class="badge badge_put">put</span><div class="method_description"><p>Change details of a particular offer</p></div><div class="clearfix"></div></div><div data-toggle="modal" data-target="#_category__categoryId__product__productId__offer__offerId__delete" class="list-group-item"><span class="badge badge_delete">delete</span><div class="method_description"><p>Delete an offer</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="_category__categoryId__product__productId__offer__offerId__get"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent">/category</span>/{categoryId}/product/{productId}/offer/{offerId}</h4></div><div class="modal-body"><div class="alert alert-info"></div><ul class="nav nav-tabs"><li class="active"><a href="#_category__categoryId__product__productId__offer__offerId__get_request" data-toggle="tab">Request</a></li><li><a href="#_category__categoryId__product__productId__offer__offerId__get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="_category__categoryId__product__productId__offer__offerId__get_request"><h3>URI Parameters</h3><ul><li><strong>categoryId</strong>: <em>required (string)</em></li><li><strong>productId</strong>: <em>required (string)</em></li><li><strong>offerId</strong>: <em>required (string)</em></li></ul></div><div class="tab-pane" id="_category__categoryId__product__productId__offer__offerId__get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Example</strong>:</p><pre><code>{
+  &#x27;offerId&#x27;: &#x27;c59c6850-7d13-11e4-b4a9-0800200c9a66&#x27;,
+  &#x27;buyingQty&#x27;: 2,
+  &#x27;offeredDetails&#x27;: &#x27;This can be offered&#x27;,
+  &#x27;buyerStatus&#x27;: &#x27;Pending|Accepted|Rejected&#x27;,
+  &#x27;sellerStatus&#x27;:  &#x27;Pending|Accepted|Rejected&#x27;,
+  &#x27;offerExpiry&#x27;: 1407533802,
+  &#x27;productId&#x27;: &#x27;c59c6850-7d13-11e4-b4a9-0800200c9a66&#x27;,
+  &#x27;buyerId&#x27;: &#x27;d60c6850-7d13-11e4-b4a9-0800200c9a67&#x27;,
+  &#x27;lastModified&#x27;: 1407533802
+}
+</code></pre><h2>HTTP status code <a href="http://httpstatus.es/400" target="_blank">400</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
+  "status": "error",
+  "errorCode": 400,
+  "errorMessage": "Bad Request"
+}
+</code></pre><h2>HTTP status code <a href="http://httpstatus.es/404" target="_blank">404</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
+  "status": "error",
+  "errorCode": 404,
+  "errorMessage": "Not Found"
+}
+</code></pre><h2>HTTP status code <a href="http://httpstatus.es/500" target="_blank">500</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
+  "status": "error",
+  "errorCode": 500,
+  "errorMessage": "Internal Server Error"
+}
+</code></pre></div></div></div></div></div></div><div class="modal fade" tabindex="0" id="_category__categoryId__product__productId__offer__offerId__put"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_put">put</span> <span class="parent">/category</span>/{categoryId}/product/{productId}/offer/{offerId}</h4></div><div class="modal-body"><div class="alert alert-info"><p>Change details of a particular offer</p></div><ul class="nav nav-tabs"><li class="active"><a href="#_category__categoryId__product__productId__offer__offerId__put_request" data-toggle="tab">Request</a></li><li><a href="#_category__categoryId__product__productId__offer__offerId__put_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="_category__categoryId__product__productId__offer__offerId__put_request"><h3>URI Parameters</h3><ul><li><strong>categoryId</strong>: <em>required (string)</em></li><li><strong>productId</strong>: <em>required (string)</em></li><li><strong>offerId</strong>: <em>required (string)</em></li></ul><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Example</strong>:</p><pre><code>{
+  &#x27;offerId&#x27;: &#x27;c59c6850-7d13-11e4-b4a9-0800200c9a66&#x27;,
+  &#x27;buyingQty&#x27;: 2,
+  &#x27;offeredDetails&#x27;: &#x27;This can be offered&#x27;,
+  &#x27;buyerStatus&#x27;: &#x27;Pending|Accepted|Rejected&#x27;,
+  &#x27;sellerStatus&#x27;:  &#x27;Pending|Accepted|Rejected&#x27;,
+  &#x27;offerExpiry&#x27;: 1407533802,
+  &#x27;productId&#x27;: &#x27;c59c6850-7d13-11e4-b4a9-0800200c9a66&#x27;,
+  &#x27;buyerId&#x27;: &#x27;d60c6850-7d13-11e4-b4a9-0800200c9a67&#x27;,
+  &#x27;lastModified&#x27;: 1407533802
+}
+</code></pre></div><div class="tab-pane" id="_category__categoryId__product__productId__offer__offerId__put_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Example</strong>:</p><pre><code>{
+  &#x27;offerId&#x27;: &#x27;c59c6850-7d13-11e4-b4a9-0800200c9a66&#x27;,
+  &#x27;buyingQty&#x27;: 2,
+  &#x27;offeredDetails&#x27;: &#x27;This can be offered&#x27;,
+  &#x27;buyerStatus&#x27;: &#x27;Pending|Accepted|Rejected&#x27;,
+  &#x27;sellerStatus&#x27;:  &#x27;Pending|Accepted|Rejected&#x27;,
+  &#x27;offerExpiry&#x27;: 1407533802,
+  &#x27;productId&#x27;: &#x27;c59c6850-7d13-11e4-b4a9-0800200c9a66&#x27;,
+  &#x27;buyerId&#x27;: &#x27;d60c6850-7d13-11e4-b4a9-0800200c9a67&#x27;,
+  &#x27;lastModified&#x27;: 1407533802
+}
+</code></pre><h2>HTTP status code <a href="http://httpstatus.es/400" target="_blank">400</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
+  "status": "error",
+  "errorCode": 400,
+  "errorMessage": "Bad Request"
+}
+</code></pre><h2>HTTP status code <a href="http://httpstatus.es/404" target="_blank">404</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
+  "status": "error",
+  "errorCode": 404,
+  "errorMessage": "Not Found"
+}
+</code></pre><h2>HTTP status code <a href="http://httpstatus.es/500" target="_blank">500</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
+  "status": "error",
+  "errorCode": 500,
+  "errorMessage": "Internal Server Error"
+}
+</code></pre></div></div></div></div></div></div><div class="modal fade" tabindex="0" id="_category__categoryId__product__productId__offer__offerId__delete"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_delete">delete</span> <span class="parent">/category</span>/{categoryId}/product/{productId}/offer/{offerId}</h4></div><div class="modal-body"><div class="alert alert-info"><p>Delete an offer</p></div><ul class="nav nav-tabs"><li class="active"><a href="#_category__categoryId__product__productId__offer__offerId__delete_request" data-toggle="tab">Request</a></li><li><a href="#_category__categoryId__product__productId__offer__offerId__delete_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="_category__categoryId__product__productId__offer__offerId__delete_request"><h3>URI Parameters</h3><ul><li><strong>categoryId</strong>: <em>required (string)</em></li><li><strong>productId</strong>: <em>required (string)</em></li><li><strong>offerId</strong>: <em>required (string)</em></li></ul></div><div class="tab-pane" id="_category__categoryId__product__productId__offer__offerId__delete_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h2>HTTP status code <a href="http://httpstatus.es/400" target="_blank">400</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
+  "status": "error",
+  "errorCode": 400,
+  "errorMessage": "Bad Request"
+}
+</code></pre><h2>HTTP status code <a href="http://httpstatus.es/404" target="_blank">404</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
+  "status": "error",
+  "errorCode": 404,
+  "errorMessage": "Not Found"
+}
+</code></pre><h2>HTTP status code <a href="http://httpstatus.es/500" target="_blank">500</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p></div></div></div></div></div></div></div><div class="panel panel-white"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel__category__categoryId__product__productId__offer__offerId__history"><span class="parent">/category</span>/{categoryId}/product/{productId}/offer/{offerId}/history</a> <span class="methods"><a href="#" data-toggle="modal" data-target="#_category__categoryId__product__productId__offer__offerId__history_get"><span class="badge badge_get">get</span></a></span></h4></div><div id="panel__category__categoryId__product__productId__offer__offerId__history" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div data-toggle="modal" data-target="#_category__categoryId__product__productId__offer__offerId__history_get" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"><p>Get history of events for a given offer in reverse chronological order</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="_category__categoryId__product__productId__offer__offerId__history_get"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent">/category</span>/{categoryId}/product/{productId}/offer/{offerId}/history</h4></div><div class="modal-body"><div class="alert alert-info"><p>Get history of events for a given offer in reverse chronological order</p></div><ul class="nav nav-tabs"><li class="active"><a href="#_category__categoryId__product__productId__offer__offerId__history_get_request" data-toggle="tab">Request</a></li><li><a href="#_category__categoryId__product__productId__offer__offerId__history_get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="_category__categoryId__product__productId__offer__offerId__history_get_request"><h3>URI Parameters</h3><ul><li><strong>categoryId</strong>: <em>required (string)</em></li><li><strong>productId</strong>: <em>required (string)</em></li><li><strong>offerId</strong>: <em>required (string)</em></li></ul></div><div class="tab-pane" id="_category__categoryId__product__productId__offer__offerId__history_get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Example</strong>:</p><pre><code>{
+  &#x27;history&#x27;: [
+    {
+      &#x27;offerHistoryId&#x27;: &#x27;4e280bb0-7d15-11e4-b4a9-0800200c9a66&#x27;,
+      &#x27;modified&#x27;: &#x27;Buyer Quantity was modified from 5 to 10&#x27;,
+      &#x27;lastModified&#x27;: 1407533802,
+      &#x27;offerId&#x27;: &#x27;5f391cc0-7d15-11e4-b4a9-0800200c9a66&#x27;
+    },
+    {
+      &#x27;offerHistoryId&#x27;: &#x27;5g531bb0-7d15-11e4-b4a9-0800200c9a66&#x27;,
+      &#x27;modified&#x27;: &#x27;Buyer Quantity was modified from 5 to 10&#x27;,
+      &#x27;lastModified&#x27;: 1407533702,
+      &#x27;offerId&#x27;: &#x27;4sd52cc0-7d15-11e4-b4a9-0800200c9a66&#x27;
+    }                    
+  ]
+}
+</code></pre><h2>HTTP status code <a href="http://httpstatus.es/400" target="_blank">400</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
+  "status": "error",
+  "errorCode": 400,
+  "errorMessage": "Bad Request"
+}
+</code></pre><h2>HTTP status code <a href="http://httpstatus.es/404" target="_blank">404</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
+  "status": "error",
+  "errorCode": 404,
+  "errorMessage": "Not Found"
+}
+</code></pre><h2>HTTP status code <a href="http://httpstatus.es/500" target="_blank">500</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
+  "status": "error",
+  "errorCode": 500,
+  "errorMessage": "Internal Server Error"
+}
+</code></pre></div></div></div></div></div></div></div><div class="panel panel-white"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel__category__categoryId__product__productId__offer__offerId__comment"><span class="parent">/category</span>/{categoryId}/product/{productId}/offer/{offerId}/comment</a> <span class="methods"><a href="#" data-toggle="modal" data-target="#_category__categoryId__product__productId__offer__offerId__comment_post"><span class="badge badge_post">post</span></a></span></h4></div><div id="panel__category__categoryId__product__productId__offer__offerId__comment" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div data-toggle="modal" data-target="#_category__categoryId__product__productId__offer__offerId__comment_post" class="list-group-item"><span class="badge badge_post">post</span><div class="method_description"><p>Create a new comment on a given offer</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="_category__categoryId__product__productId__offer__offerId__comment_post"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_post">post</span> <span class="parent">/category</span>/{categoryId}/product/{productId}/offer/{offerId}/comment</h4></div><div class="modal-body"><div class="alert alert-info"><p>Create a new comment on a given offer</p></div><ul class="nav nav-tabs"><li class="active"><a href="#_category__categoryId__product__productId__offer__offerId__comment_post_request" data-toggle="tab">Request</a></li><li><a href="#_category__categoryId__product__productId__offer__offerId__comment_post_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="_category__categoryId__product__productId__offer__offerId__comment_post_request"><h3>URI Parameters</h3><ul><li><strong>categoryId</strong>: <em>required (string)</em></li><li><strong>productId</strong>: <em>required (string)</em></li><li><strong>offerId</strong>: <em>required (string)</em></li></ul><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Example</strong>:</p><pre><code>{
+  &#x27;comment&#x27;: &#x27;This was commented by a user, buyer or seller at time.&#x27;, 
+  &#x27;userId&#x27;: &#x27;e5a50560-7d15-11e4-b4a9-0800200c9a66&#x27;
+}
+</code></pre></div><div class="tab-pane" id="_category__categoryId__product__productId__offer__offerId__comment_post_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Example</strong>:</p><pre><code>{
+  &#x27;commentId&#x27;: &#x27;c7f69a10-7d15-11e4-b4a9-0800200c9a66&#x27;,
+  &#x27;comment&#x27;: &#x27;This was commented by a user, buyer or seller at time.&#x27;, 
+  &#x27;userId&#x27;: &#x27;e5a50560-7d15-11e4-b4a9-0800200c9a66&#x27;
+}
+</code></pre><h2>HTTP status code <a href="http://httpstatus.es/400" target="_blank">400</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
+  "status": "error",
+  "errorCode": 400,
+  "errorMessage": "Bad Request"
+}
+</code></pre><h2>HTTP status code <a href="http://httpstatus.es/404" target="_blank">404</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
+  "status": "error",
+  "errorCode": 404,
+  "errorMessage": "Not Found"
+}
+</code></pre><h2>HTTP status code <a href="http://httpstatus.es/500" target="_blank">500</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
+  "status": "error",
+  "errorCode": 500,
+  "errorMessage": "Internal Server Error"
+}
+</code></pre></div></div></div></div></div></div></div></div></div></div></div><div class="col-md-3"><div id="sidebar" class="hidden-print affix" role="complementary"><ul class="nav nav-pills nav-stacked"><li><a href="#_users">/users</a></li><li><a href="#_category">/category</a></li></ul></div></div></div></div></body></html>
