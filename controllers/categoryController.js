@@ -13,7 +13,7 @@ module.exports.postCategory = function(req, res) {
 		logger.log("Empty request body received in POST category.");
 		return res.send(400, env.errorMessages.code400);
 	}
-	userModel.dbCreateCategory(req.body, function(error, newCategory) {
+	categoryModel.dbCreateCategory(req.body, function(error, newCategory) {
 		if (error) {
 			logger.error('Error from database in POST category. ' + error);
 			return res.send(500, env.errorMessages.code500);
@@ -28,7 +28,7 @@ module.exports.postCategory = function(req, res) {
 
 module.exports.getCategory = function(req, res) {
 	var categoryId = req.params.category_id;
-	userModel.dbGetCategory(categoryId, function(error, category) {
+	categoryModel.dbGetCategory(categoryId, function(error, category) {
 		if (error) {
 			logger.error('Error from database: ' + error);
 			return res.send(500, env.errorMessages.code500);

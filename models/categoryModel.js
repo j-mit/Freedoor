@@ -51,6 +51,6 @@ function dbGetCategory(categoryId, callback) {
 // Export all functions for this module
 moduleExports = {}
 moduleExports.dbGetCategory = dbGetCategory;
-//moduleExports.dbCreateCategory = dbCreateCategory;
+moduleExports.dbCreateCategory = dbCreateCategory;
 
 module.exports = moduleExports;
