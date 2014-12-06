@@ -1,0 +1,28 @@
+{
+  "name": "social-network",
+  "description": "A social network using graph databases.",
+  "version": "1.0.0",
+	"dependencies": {
+		"express": "3.4.0",
+		"underscore": "1.5.2",
+		"forever": "0.10.9",
+		"ejs": "0.8.5",
+		"xml2js": "0.2.8",
+		"request": "2.27.0",
+		"extend": "1.2.1",
+		"aws-sdk": "~1.12.0",
+		"mongoose": "~3.8.8",
+		"nodeunit": "~0.8.6",
+		"nock": "0.45.0",
+		"validator": "3.16.1",
+		"memcached": "~0.2.8",
+		"node-uuid": "1.4.1",
+		"nedb": "0.11.1",
+		"moment": "2.8.1",
+		"async": "0.9.0",
+		"z-schema": "3.0.1"
+  	},
+	"scripts": {
+		"start": "node ./server.js"
+	}
+}

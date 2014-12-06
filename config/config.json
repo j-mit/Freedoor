@@ -1,0 +1,15 @@
+{
+  "default": {
+    "server": {
+      "httpSecure": false
+    },
+    "memcached": {
+      "locations": "127.0.0.1:11211",
+      "sessionExpiration":0,
+      "options":{}
+    },
+    "mongo": {
+      "url": "mongodb://localhost/social-network"
+    }
+  }
+}
