@@ -10,7 +10,7 @@ var env = require("../config/environment")
 	, logger = env.logger
 ;
 
-function dbCreatecategory(categoryObject, callback) {
+function dbCreateCategory(categoryObject, callback) {
 	var categoryId = {"categoryId": env.uuid()};
 	categoryObject = _.extend(categoryObject, categoryId);
 
@@ -20,7 +20,7 @@ function dbCreatecategory(categoryObject, callback) {
 	// Because mongoose is an orm, we need to save the object instance
 	dbCategoryObject.save(function(error, newCategoryObject) {
 		if(error) {
-			logger.error('Error from database creating a user.');
+			logger.error('Error from database creating a category.');
 			return callback(error, null);
 		}
 		// Convert the mongoose doc to JSON object
@@ -29,8 +29,8 @@ function dbCreatecategory(categoryObject, callback) {
 	});
 }
 
-function dbGetCategory(userId, callback) {
-	env.Users.findOne({ "categoryId": categoryId }, function(error, userObject) {
+function dbGetCategory(categoryId, callback) {
+	env.Category.findOne({ "categoryId": categoryId }, function(error, categoryObject) {
 		// log error from database, if so
 		if(error) {
 			logger.error('Error from database: ' + error);
@@ -51,6 +51,6 @@ function dbGetCategory(userId, callback) {
 // Export all functions for this module
 moduleExports = {}
 moduleExports.dbGetCategory = dbGetCategory;
-moduleExports.dbCreateCategory = dbCreateCategory;
+//moduleExports.dbCreateCategory = dbCreateCategory;
 
 module.exports = moduleExports;
