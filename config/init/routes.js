@@ -15,6 +15,8 @@ module.exports = function(app, env) {
 	// User routes
 	app.post(baseurl + '/users', userController.postUser);
 	app.get(baseurl + '/users/:user_id', userController.getUser);
+	app.post(baseurl + '/category', categoryController.postCategory);
+	app.get(baseurl + '/category/:category_id', categoryController.getCategory);
 
 	// Category routes
 	
