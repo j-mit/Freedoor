@@ -8,9 +8,9 @@ var uuid = require('node-uuid')
 	, path = require('path')
 ;
 
-module.exports = function(app, server, env) {
+module.exports = function(app, env) {
 	// get a new uuid for freedoor application
-	env.getUUID = function() {
+	env.uuid = function() {
 		return uuid.v4();
 	}
 

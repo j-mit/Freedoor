@@ -5,11 +5,18 @@
 */
 
 var userController = require('../../controllers/userController')
+	, categoryController = require('../../controllers/categoryController')
+	, baseurl = '/freedoor/v1'
 ;
 
 module.exports = function(app, env) {
-	var baseurl = '/freedoor/v1';
 	//set all the routes for freedoor application
+	
+	// User routes
 	app.post(baseurl + '/users', userController.postUser);
 	app.get(baseurl + '/users/:user_id', userController.getUser);
+
+	// Category routes
+	
+
 }

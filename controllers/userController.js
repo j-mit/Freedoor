@@ -19,24 +19,24 @@ var env = require("../config/environment")
 var userModel = require("../models/userModel")
 
 module.exports.postUser = function(req, res) {
-	var stubbedUser = {
-		'userId': '22f3bc90-7cf8-11e4-b4a9-0800200c9a66',
-		'firstName': 'Test',
-		'lastName': 'User',
-		'emaiId': 'Test.User@test.com',
-		'mobile': 4084084084
+	if (_.isEmpty(req.body)) {
+		logger.log("Empty request body received in POST user.");
+		return res.send(400, env.globalErrorHandler.code400);
 	}
-	res.send(200, stubbedUser);
+	userModel.dbCreateUser(req.body, function(error, newUser) {
+		if (error) {
+			logger.error('Error from database in POST user. ' + error);
+			return res.send(500, env.globalErrorHandler.code500);
+		}
+		if (validator.isNull(newUser)) {
+			logger.debug('Null object received from database in POST user. ');
+			return res.send(400, env.globalErrorHandler.code400);
+		}
+		return res.send(200, newUser);
+	});
 }
 
 module.exports.getUser = function(req, res) {
-	var stubbedUser = {
-		'userId': '22f3bc90-7cf8-11e4-b4a9-0800200c9a66',
-		'firstName': 'Test',
-		'lastName': 'User',
-		'emaiId': 'Test.User@test.com',
-		'mobile': 4084084084
-	}
 	var userId = req.params.user_id;
 	userModel.dbGetUser(userId, function(error, user) {
 		if (error) {
@@ -48,9 +48,6 @@ module.exports.getUser = function(req, res) {
 			return res.send(404, env.globalErrorHandler.code404);
 
 		}
-		// do other processing here, if needed
 		return res.send(200, user);
 	});
 }
-
-;
