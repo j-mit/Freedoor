@@ -41,3 +41,18 @@ module.exports.getCategory = function(req, res) {
 		return res.send(200, category);
 	});
 }
+
+module.exports.getCategories = function(req, res) {
+	categoryModel.dbGetCategories(function(error, categories) {
+		if (error) {
+			logger.error('Error from database: ' + error);
+			return res.send(500, env.errorMessages.code500);
+		}
+		if (validator.isNull(categories)) {
+			logger.debug('Null object received in get category controller');
+			return res.send(404, env.errorMessages.code404);
+
+		}
+		return res.send(200, categories);
+	});
+}

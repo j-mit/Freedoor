@@ -48,8 +48,37 @@ function dbGetCategory(categoryId, callback) {
  	});
 }
 
+function dbGetCategories(callback) {
+	env.Category.find(null, function(error, categories) {
+		// log error from database, if so
+		if(error) {
+			logger.error('Error from database: ' + error);
+			return callback(error);
+		}
+		// check if a null object is received
+		if(validator.isNull(categories)) {
+			logger.debug('No categories');
+			return callback(null, null);
+		}
+		// Because mongo is an orm, it's doc needs to be converted to JS object
+		//Return the information from database
+		var catarray=_.toArray(categories);
+		for (var i=0;i<catarray.length;i++)
+		{
+			var cat=catarray[i].toObject();
+			category = _.omit(cat, ['_id', '__v']);
+			catarray[i]=category;
+		}
+			
+		return callback(null, catarray);
+ 	});
+}
+
+
+
 // Export all functions for this module
 moduleExports = {}
+moduleExports.dbGetCategories=dbGetCategories;
 moduleExports.dbGetCategory = dbGetCategory;
 moduleExports.dbCreateCategory = dbCreateCategory;
 
