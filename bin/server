@@ -11,9 +11,12 @@ var pwd = process.cwd()
 
 function startServer(args) {
 	console.log('Starting ' + appName + ' server');
-	fs.unlink(pwd + "/" + appName + ".log");
-	fs.unlink(pwd + "/" + appName + ".out");
-	fs.unlink(pwd + "/" + appName + ".err");
+	if (fs.existsSync(pwd + "/" + appName + ".log"))
+		fs.unlink(pwd + "/" + appName + ".log");
+	if (fs.existsSync(pwd + "/" + appName + ".out"))
+		fs.unlink(pwd + "/" + appName + ".out");
+	if (fs.existsSync(pwd + "/" + appName + ".err"))
+		fs.unlink(pwd + "/" + appName + ".err");
 	forever.startDaemon(pwd + "/" + serverBasename, {
 		cwd: pwd,
 		logFile: pwd + "/" + appName + ".log", // Path to log output from forever process (when daemonized)
