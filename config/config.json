@@ -1,12 +1,7 @@
 {
     "server": {
-      "httpSecure": false,
-      "debug": false
-    },
-    "memcached": {
-      "locations": "127.0.0.1:11211",
-      "sessionExpiration":0,
-      "options":{}
+      "debug": false,
+      "appName": "freedoor"
     },
     "mongo": {
       "url": "mongodb://localhost/freedoor"
