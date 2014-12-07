@@ -1,7 +1,8 @@
 {
     "server": {
       "debug": false,
-      "appName": "freedoor"
+      "appName": "freedoor",
+      "validateSchemas": true
     },
     "mongo": {
       "url": "mongodb://localhost/freedoor"

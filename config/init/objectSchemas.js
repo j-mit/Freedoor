@@ -16,7 +16,7 @@ moduleExports.postUserSchema = [
 			emailId: { type: "string", format: "email" },
 			mobile: { type: "number", minLength: 3, maxLength: 36 }
 		},
-		required: ["email"]
+		required: ["emailId"]
 	}
 ]
 

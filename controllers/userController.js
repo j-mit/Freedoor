@@ -19,7 +19,7 @@ module.exports.postUser = function(req, res) {
 		return res.send(400, env.errorMessages.code400);
 	}
 	// validate object schema
-	if (!env.objectSchemaValidator.validate(req.body, env.postUserSchema)) {
+	if (env.config.server.validateSchemas && !env.objectSchemaValidator.validate(req.body, env.postUserSchema)) {
 		logger.log("Invalid post user schema received. " + JSON.stringify(env.objectSchemaValidator.getLastErrors()));
 		return res.send(400, _.extend(env.errorMessages.code400, env.objectSchemaValidator.getLastErrors()));
 	}
