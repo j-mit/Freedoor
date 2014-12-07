@@ -7,6 +7,7 @@
 var userController = require('../../controllers/userController')
 	, categoryController = require('../../controllers/categoryController')
 	, productController=require('../../controllers/productController')
+	, offerController = require('../../controllers/offerController')
 	, baseurl = '/freedoor/v1'
 ;
 
@@ -29,6 +30,13 @@ module.exports = function(app, env) {
 	app.get(baseurl + '/category/:category_id/product/:product_id', productController.getProduct);
 	app.put(baseurl + '/category/:category_id/product/:product_id', productController.putProduct);
 	app.delete(baseurl + '/category/:category_id/product/:product_id', productController.deleteProduct);
+
+	// Offer routes
+	app.get(baseurl + '/offers', offerController.getOffer);
+	app.post(baseurl + '/offers', offerController.postOffer);
+	app.get(baseurl + '/offer/:offer_id', offerController.getOfferId);
+	app.put(baseurl + '/offer/:offer_id', offerController.putOfferId);
+	app.delete(baseurl + '/offer/:offer_id', offerController.deleteOfferId);
 	
 
 }
