@@ -33,7 +33,6 @@ function stopServer(args) {
 }
 
 function listServer(args) {
-	console.log('Listing servers');
 	forever.list(true, function(err, listOfProcesses) {
 		if (listOfProcesses) {
 			console.log(listOfProcesses)
