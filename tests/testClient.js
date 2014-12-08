@@ -8,8 +8,10 @@ var logger = require('util')
 	, async = require('async')
 	, validator = require('validator')
 	, _ = require('underscore')
+	, moment = require('moment')
 ;
 
+// Get random number for objects creation
 function getRandomNumber(param) {
 	if (param === "number") {
 		return Math.random();
@@ -19,6 +21,12 @@ function getRandomNumber(param) {
 	return Math.random();
 }
 
+// Get a new unix timestamp to update last modified
+function getUnixTimestamp() {
+	return Number(moment().format("X"));
+}
+
+// Post a new user
 function postUser(baseurl, callback) {
 	// test user
 	var userObject = {
@@ -47,6 +55,7 @@ function postUser(baseurl, callback) {
 	});
 }
 
+// Get user based on user id
 function getUser(baseurl, postUserBody, callback) {
 	// callback would include error, response and body
 	var userId = postUserBody.userId;
@@ -68,6 +77,154 @@ function getUser(baseurl, postUserBody, callback) {
 	});
 }
 
+// POST a category
+function postCategory(baseurl, callback) {
+	// callback would include error, body
+	// test category
+	var categoryObject = {
+		'categoryName': 'TestCategory' + getRandomNumber("string")
+	}
+	var url = baseurl + "/category";
+	var options = {
+		method: 'post',
+		body: categoryObject,
+		json: true,
+		url: url
+	}
+	// callback would include error and body
+	request(options, function(error, response, body) {
+		if (error) {
+			logger.log("Error received from postCategory: " + error);
+			return callback(500);
+		}
+		if (response.statusCode !== 200) {
+			return callback(response.statusCode);
+		}
+		return callback(null, body);
+	});	
+}
+
+// Get a category
+function getCategory(baseurl, postCategoryBody, callback) {
+	// callback would include error, response and body
+	var categoryId = postCategoryBody.categoryId;
+	var url = baseurl + "/category/" + categoryId;
+	var options = {
+		method: 'get',
+		json: true,
+		url: url
+	}	
+	request(options, function(error, response, body) {
+		if(error) {
+			logger.log("Error received from getCategory: " + error);
+			return callback(500);
+		}
+		if (response.statusCode !== 200) {
+			return callback(null, body);
+		}
+		return callback(null, body);
+	});	
+}
+
+// get categories
+function getCategories(baseurl, callback) {
+	// callback would include error and body
+	var url = baseurl + "/category"
+	var options = {
+		method: 'get',
+		json: true,
+		url: url
+	}	
+	request(options, function(error, response, body) {
+		if(error) {
+			logger.log("Error received from getCategories: " + error);
+			return callback(500);
+		}
+		if (response.statusCode !== 200) {
+			return callback(null, body);
+		}
+		return callback(null, body);
+	});		
+}
+
+// post a new product in a category
+function postProduct(baseurl, waterfallJson, callback) {
+	// callback would include error, body
+	// post product
+	var productObject = {
+		'productName': 'NewProduct' + getRandomNumber("string"),
+		'quantity': getRandomNumber(),
+		'userId': waterfallJson.getUserBody.userId,
+		'expectedOffer': 'This is a test of expectation.' + getRandomNumber("string"),
+		'productDesc': 'Its a test prodcut ' + getRandomNumber("string"),
+		'productExpiryDate': getUnixTimestamp(),
+		'isValid': 1,
+		'categoryId': waterfallJson.getCategoryBody.categoryId,
+		'lastUpdated': getUnixTimestamp()
+	}
+	var url = baseurl + "/category/" + waterfallJson.getCategoryBody.categoryId + "/product";
+	var options = {
+		method: 'post',
+		body: productObject,
+		json: true,
+		url: url
+	}
+	// callback would include error and body
+	request(options, function(error, response, body) {
+		if (error) {
+			logger.log("Error received from postProduct: " + error);
+			return callback(500);
+		}
+		if (response.statusCode !== 200) {
+			return callback(response.statusCode);
+		}
+		return callback(null, body);
+	});		
+}
+
+// get a new product in a category
+function getProduct(baseurl, waterfallJson, callback) {
+	// callback would include error and body
+	var url = baseurl + "/category/" + waterfallJson.getCategoryBody.categoryId + "/product/" + waterfallJson.postProductBody.productId;
+	var options = {
+		method: 'get',
+		json: true,
+		url: url
+	}	
+	request(options, function(error, response, body) {
+		if(error) {
+			logger.log("Error received from getProduct: " + error);
+			return callback(500);
+		}
+		if (response.statusCode !== 200) {
+			return callback(null, body);
+		}
+		return callback(null, body);
+	});		
+}
+
+// get a all products in a category
+function getProducts(baseurl, waterfallJson, callback) {
+	// callback would include error and body
+	var url = baseurl + "/category/" + waterfallJson.getCategoryBody.categoryId + "/product";
+	var options = {
+		method: 'get',
+		json: true,
+		url: url
+	}	
+	request(options, function(error, response, body) {
+		if(error) {
+			logger.log("Error received from getProducts: " + error);
+			return callback(500);
+		}
+		if (response.statusCode !== 200) {
+			return callback(null, body);
+		}
+		return callback(null, body);
+	});		
+}
+
+// Display help || usage
 function showUsage() {
 	console.log("Usage: ./tests/testClient hostname port baseurl all|user|category|product|offer");
 	return;
@@ -112,6 +269,109 @@ function main(args) {
 			}			
 			waterfallJson.getUserBody = body;
 			logger.log("Test 2: Get user: \t\t\tOK");
+			cb(null, waterfallJson);
+		});
+	},
+
+	//Test 3: Post category
+	function(waterfallJson, cb) {
+		postCategory(baseurl, function(error, body) {
+			if (error) {
+				logger.log("Test 3: Post Category: Failed. Error code: " + error);
+				return cb(error);
+			}
+			if (_.isEmpty(body) || !body.categoryId) {
+				logger.log("Test 3: Post Category: Failed. Empty Body or no category Id received.");
+				return cb(500);
+			}			
+			waterfallJson.postCategoryBody = body;
+			logger.log("Test 3: Post Category: \t\tOK");
+			cb(null, waterfallJson);			
+		});
+	},
+
+	//Test 4: Get category
+	function(waterfallJson, cb) {
+		getCategory(baseurl, waterfallJson.postCategoryBody, function(error, body) {
+			if (error) {
+				logger.log("Test 4: Get Category: Failed. Error code: " + error)
+				return cb(error);
+			}
+			if (_.isEmpty(body) || !body.categoryId) {
+				logger.log("Test 4: Get Category: Failed. Empty Body or no categoryId received.");
+				return cb(500);
+			}			
+			waterfallJson.getCategoryBody = body;
+			logger.log("Test 4: Get category: \t\t\tOK");
+			cb(null, waterfallJson);
+		});
+	},
+
+	//Test 5: Get categories
+	function(waterfallJson, cb) {
+		getCategories(baseurl, function(error, body) {
+			if (error) {
+				logger.log("Test 5: Get Categories: Failed. Error code: " + error)
+				return cb(error);
+			}
+			if (_.isEmpty(body) || !body[0].categoryId) {
+				logger.log("Test 5: Get Categories: Failed. Empty Body or no categoryId received.");
+				return cb(500);
+			}			
+			//waterfallJson.getCategoriesBody = body;
+			logger.log("Test 5: Get categories: \t\tOK");
+			cb(null, waterfallJson);
+		});
+	},
+
+	//Test 6: Post product
+	function(waterfallJson, cb) {
+		postProduct(baseurl, waterfallJson, function(error, body) {
+			if (error) {
+				console.log(body)
+				logger.log("Test 6: Post Product: Failed. Error code: " + error);
+				return cb(error);
+			}
+			if (_.isEmpty(body) || !body.productId) {
+				logger.log("Test 6: Post Product: Failed. Empty Body or no product Id received.");
+				return cb(500);
+			}			
+			waterfallJson.postProductBody = body;
+			logger.log("Test 6: Post Product: \t\t\tOK");
+			cb(null, waterfallJson);			
+		});
+	},
+
+	//Test 7: Get product
+	function(waterfallJson, cb) {
+		getProduct(baseurl, waterfallJson, function(error, body) {
+			if (error) {
+				logger.log("Test 7: Get Product: Failed. Error code: " + error)
+				return cb(error);
+			}
+			if (_.isEmpty(body) || !body.productId) {
+				logger.log("Test 7: Get Product: Failed. Empty Body or no productId received.");
+				return cb(500);
+			}			
+			//waterfallJson.getCategoriesBody = body;
+			logger.log("Test 7: Get product: \t\t\tOK");
+			cb(null, waterfallJson);
+		});
+	},
+
+	//Test 8: Get products
+	function(waterfallJson, cb) {
+		getProducts(baseurl, waterfallJson, function(error, body) {
+			if (error) {
+				logger.log("Test 8: Get Products: Failed. Error code: " + error)
+				return cb(error);
+			}
+			if (_.isEmpty(body) || !body[0].productId) {
+				logger.log("Test 8: Get Products: Failed. Empty Body or no productId received.");
+				return cb(500);
+			}			
+			//waterfallJson.getCategoriesBody = body;
+			logger.log("Test 8: Get products: \t\t\tOK");
 			cb(null, waterfallJson);
 		});
 	}
