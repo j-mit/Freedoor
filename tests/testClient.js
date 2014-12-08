@@ -305,6 +305,27 @@ function getOffer(baseurl, waterfallJson, callback) {
 	});		
 }
 
+// get a all offers in a product
+function getOffers(baseurl, waterfallJson, callback) {
+	// callback would include error and body
+	var url = baseurl + "/category/" + waterfallJson.getCategoryBody.categoryId + "/product/" + waterfallJson.getProductBody.productId + "/offer";
+	var options = {
+		method: 'get',
+		json: true,
+		url: url
+	}	
+	request(options, function(error, response, body) {
+		if(error) {
+			logger.log("Error received from getOffers: " + error);
+			return callback(500);
+		}
+		if (response.statusCode !== 200) {
+			return callback(null, body);
+		}
+		return callback(null, body);
+	});		
+}
+
 // Display help || usage
 function showUsage() {
 	console.log("Usage: ./tests/testClient hostname port baseurl all|user|category|product|offer");
@@ -505,7 +526,24 @@ function main(args) {
 			logger.log("Test 11: Get Offer: \t\t\tOK");
 			cb(null, waterfallJson);			
 		});
-	}
+	},
+
+	//Test 12: Get Offers
+	function(waterfallJson, cb) {
+		getOffers(baseurl, waterfallJson, function(error, body) {
+			if (error) {
+				logger.log("Test 12: Get Offers: Failed. Error code: " + error);
+				return cb(error);
+			}
+			if (_.isEmpty(body) || !typeof body === "array" || !body[0].offerId) {
+				logger.log("Test 12: Get Offers: Failed. Empty Body or no offer Id received.");
+				return cb(500);
+			}			
+			waterfallJson.getOfferBody = body;
+			logger.log("Test 12: Get Offers: \t\t\tOK");
+			cb(null, waterfallJson);			
+		});
+	}	
 
 	],
 	function(error, waterfallJson) {
