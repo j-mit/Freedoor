@@ -6,6 +6,7 @@
 
 var userController = require('../../controllers/userController')
 	, categoryController = require('../../controllers/categoryController')
+	, commentController = require('../../controllers/commentController')
 	, baseurl = '/freedoor/v1'
 ;
 
@@ -19,6 +20,10 @@ module.exports = function(app, env) {
 	app.get(baseurl + '/category/:category_id', categoryController.getCategory);
 
 	// Category routes
+
+	//Comment routes
+	app.post(baseurl + '/comments/', commentController.postComments);
+	app.get(baseurl + '/comments/:comment_id', commentController.getComments);
 	
 
 }

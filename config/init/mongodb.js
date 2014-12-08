@@ -10,6 +10,7 @@ var mongoose = require('mongoose')
 // blank schema to make req/res schema less
 var userSchema = new schema({}, { strict: false });
 var categorySchema = new schema({}, { strict: false });
+var commentSchema = new schema({}, { strict: false });
 
 module.exports = function(app, env) {
 	// mongoose gives default pool of 100 connections
@@ -17,4 +18,5 @@ module.exports = function(app, env) {
 	env.db = mongoose.connect(mongoUrl);
 	env.Users = mongoose.model('Users', userSchema);
 	env.Category = mongoose.model('Category', categorySchema);
+	env.Comments = mongoose.model('Comments', commentSchema);
 }
