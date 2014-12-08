@@ -250,6 +250,40 @@ function putProduct(baseurl, waterfallJson, callback) {
 	});		
 }
 
+// post a new offer on a product
+function postOffer(baseurl, waterfallJson, callback) {
+	// callback would include error, body
+	// post offer
+	var offerObject = {
+		'buyingQty': 2,
+		'offeredDetails': 'This can be offered' + getRandomNumber("string"),
+		'buyerStatus': 'Pending',
+		'sellerStatus':  'Pending',
+		'offerExpiry': getUnixTimestamp(),
+		'productId': waterfallJson.getProductBody.productId,
+		'buyerId': waterfallJson.getUserBody.userId,
+		'lastModified': getUnixTimestamp()
+	}
+	var url = baseurl + "/category/" + waterfallJson.getCategoryBody.categoryId + "/product/" + waterfallJson.getProductBody.productId + "/offer";
+	var options = {
+		method: 'post',
+		body: offerObject,
+		json: true,
+		url: url
+	}
+	// callback would include error and body
+	request(options, function(error, response, body) {
+		if (error) {
+			logger.log("Error received from postOffer: " + error);
+			return callback(500);
+		}
+		if (response.statusCode !== 200) {
+			return callback(response.statusCode);
+		}
+		return callback(null, body);
+	});		
+}
+
 // Display help || usage
 function showUsage() {
 	console.log("Usage: ./tests/testClient hostname port baseurl all|user|category|product|offer");
@@ -411,14 +445,32 @@ function main(args) {
 				return cb(error);
 			}
 			if (_.isEmpty(body) || !body.productId) {
-				logger.log("Test 9: Post Product: Failed. Empty Body or no product Id received.");
+				logger.log("Test 9: Put Product: Failed. Empty Body or no product Id received.");
 				return cb(500);
 			}			
 			//waterfallJson.putProductBody = body;
 			logger.log("Test 9: Put Product: \t\t\tOK");
 			cb(null, waterfallJson);			
 		});
-	}	
+	},
+
+	//Test 10: Post Offer
+	function(waterfallJson, cb) {
+		postOffer(baseurl, waterfallJson, function(error, body) {
+			if (error) {
+				console.log(body)
+				logger.log("Test 10: Post Offer: Failed. Error code: " + error);
+				return cb(error);
+			}
+			if (_.isEmpty(body) || !body.offerId) {
+				logger.log("Test 10: Post Offer: Failed. Empty Body or no offer Id received.");
+				return cb(500);
+			}			
+			//waterfallJson.putProductBody = body;
+			logger.log("Test 10: Post Offer: \t\t\tOK");
+			cb(null, waterfallJson);			
+		});
+	}		
 
 	],
 	function(error, waterfallJson) {
