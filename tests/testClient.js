@@ -505,7 +505,7 @@ function main(args) {
 			logger.log("Test 11: Get Offer: \t\t\tOK");
 			cb(null, waterfallJson);			
 		});
-	},	
+	}
 
 	],
 	function(error, waterfallJson) {
