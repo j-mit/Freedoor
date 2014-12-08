@@ -9,6 +9,7 @@ var userController = require('../../controllers/userController')
 	, commentController = require('../../controllers/commentController')
 	, productController=require('../../controllers/productController')
 	, offerController = require('../../controllers/offerController')
+	, historyController = require('../../controllers/historyController')
 	, baseurl = '/freedoor/v1'
 ;
 
@@ -35,9 +36,8 @@ module.exports = function(app, env) {
 	// Category routes
 
 	//Comment routes
-	app.post(baseurl + '/comments/', commentController.postComments);
-	app.get(baseurl + '/comments/:comment_id', commentController.getComments);
-
+	app.post(baseurl + '/category/:category_id/product/:product_id/comments/', commentController.postComments);
+	app.get(baseurl + '/category/:category_id/product/:product_id/comments/:comment_id', commentController.getComments);
 	// Offer routes
 	app.get(baseurl + '/offers', offerController.getOffer);
 	app.post(baseurl + '/offers', offerController.postOffer);
@@ -45,5 +45,7 @@ module.exports = function(app, env) {
 	app.put(baseurl + '/offer/:offer_id', offerController.putOfferId);
 	app.delete(baseurl + '/offer/:offer_id', offerController.deleteOfferId);
 
-
+	//history routes
+	app.get(baseurl + '/category/:category_id/product/:product_id/history/:offer_id', historyController.getHistory);
+	
 }
