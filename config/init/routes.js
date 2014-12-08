@@ -38,13 +38,14 @@ module.exports = function(app, env) {
 	//Comment routes
 	app.post(baseurl + '/category/:category_id/product/:product_id/comments/', commentController.postComments);
 	app.get(baseurl + '/category/:category_id/product/:product_id/comments/:comment_id', commentController.getComments);
+	
 	// Offer routes
-	app.get(baseurl + '/offers', offerController.getOffer);
-	app.post(baseurl + '/offers', offerController.postOffer);
-	app.get(baseurl + '/offer/:offer_id', offerController.getOfferId);
-	app.put(baseurl + '/offer/:offer_id', offerController.putOfferId);
-	app.delete(baseurl + '/offer/:offer_id', offerController.deleteOfferId);
-
+	app.get(baseurl + '/category/:category_id/product/:product_id/offer', offerController.getOffer);
+	app.post(baseurl + '/category/:category_id/product/:product_id/offer', offerController.postOffer);
+	app.get(baseurl + '/category/:category_id/product/:product_id/offer/:offer_id', offerController.getOfferId);
+	app.put(baseurl + '/category/:category_id/product/:product_id/offer/:offer_id', offerController.putOfferId);
+	app.delete(baseurl + '/category/:category_id/product/:product_id/offer/:offer_id', offerController.deleteOfferId);
+	
 	//history routes
 	app.get(baseurl + '/category/:category_id/product/:product_id/history/:offer_id', historyController.getHistory);
 	

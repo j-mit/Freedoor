@@ -64,6 +64,7 @@ module.exports.putOfferId = function(req, res) {
 		logger.log("Empty request body received in PUT offer.");
 		return res.send(400, env.errorMessages.code400);
 	}
+	
 	var offerid = req.params.offer_id;
 	offerModel.dbUpdateOffer(offerid, req.body, function(error, upOffer) {
 		if (error) {
