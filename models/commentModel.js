@@ -11,7 +11,7 @@ var env = require("../config/environment")
 ;
 
 
-function dbCreateComment(commentObject, callback){
+/*function dbCreateComment(commentObject, callback){
 	var commentId = {"commentId": env.uuid()};
 	commentObject = _.extend(commentObject, commentId) 
 	
@@ -28,7 +28,27 @@ function dbCreateComment(commentObject, callback){
 		newCommentObject = newCommentObject.toObject();
 		return callback(null, _.omit(newCommentObject, ['_id', '__v']));
 	});
+}*/
+
+function dbCreateComment(commentObject, offerId, callback){
+	env.Offers.findOneAndUpdate({ "offerId": offerId }, { $push : commentObject }, function(error, offerObject) {
+		if(error) { 
+			logger.error('Error from database creating a comment.');
+			return callback(error, null);
+		}
+		// check if a null object is received
+		if(validator.isNull(offerObject)) {
+			logger.debug('Null object received from database, offerId: ' + offerId);
+			return callback(null, null);
+		}
+		// Because mongo is an orm, it's doc needs to be converted to JS object
+		offerObject = offerObject.toObject();
+		//Return the information from database
+		return callback(null, _.omit(offerObject, ['_id', '__v']));
+	});
+	
 }
+
 
 function dbGetComment(commentId, callback){
 	env.Comments.findOne({"commentId" : commentId},function(error, commentObject){

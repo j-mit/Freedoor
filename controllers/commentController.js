@@ -20,17 +20,17 @@ module.exports.postComments = function(req,res){
 		return res.send(400, env.errorMessages.code400);
 	}
 	
-	commentModel.dbCreateComment(req.body, function(error, newComment){
+	commentModel.dbCreateComment(req.body, req.params.offer_id, function(error, offerObject){
 		if(error){
 			logger.error('Error from database in POST comment. ' + error);
 			return res.send(500, env.errorMessages.code500);
 		}
 
-		if (validator.isNull(newComment)) {
+		if (validator.isNull(offerObject)) {
 			logger.debug('Null object received from database in POST comment. ');
 			return res.send(400, env.errorMessages.code400);
 		}
-		return res.send(200, newComment);
+		return res.send(200, offerObject);
 	});	
 }
 
