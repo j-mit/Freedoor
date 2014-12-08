@@ -28,3 +28,17 @@ Test client usage:
 ~/freedoor 1210: -> ./tests/testClient.js 
 Usage: ./tests/testClient hostname port baseurl all|user|category|product|offer
 ```
+
+Sample Test Client Run:
+```
+~/freedoor 1228: -> ./tests/testClient.js localhost 8000 /freedoor/v1 all
+7 Dec 17:38:35 - Running all tests on server: http://localhost:8000/freedoor/v1
+7 Dec 17:38:35 - Test 1: Post user: 			OK
+7 Dec 17:38:35 - Test 2: Get user: 			OK
+7 Dec 17:38:35 - Test 3: Post Category: 		OK
+7 Dec 17:38:35 - Test 4: Get category: 			OK
+7 Dec 17:38:35 - Test 5: Get categories: 		OK
+7 Dec 17:38:35 - Test 6: Post Product: 			OK
+7 Dec 17:38:35 - Test 7: Get product: 			OK
+7 Dec 17:38:35 - Test 8: Get products: 			OK
+```
