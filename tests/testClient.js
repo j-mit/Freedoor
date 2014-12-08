@@ -326,6 +326,32 @@ function getOffers(baseurl, waterfallJson, callback) {
 	});		
 }
 
+// put an offer, change details of an offer
+function putOffer(baseurl, waterfallJson, callback) {
+	// callback would include error, body
+	// put offer
+	var offerObject = waterfallJson.getOfferBody;
+	offerObject.sellerStatus = "Accepted";
+	var url = baseurl + "/category/" + waterfallJson.getCategoryBody.categoryId + "/product/" + waterfallJson.getProductBody.productId + "/offer/" + waterfallJson.getOfferBody.offerId;
+	var options = {
+		method: 'put',
+		body: offerObject,
+		json: true,
+		url: url
+	}
+	// callback would include error and body
+	request(options, function(error, response, body) {
+		if (error) {
+			logger.log("Error received from putOffer: " + error);
+			return callback(500);
+		}
+		if (response.statusCode !== 200) {
+			return callback(response.statusCode);
+		}
+		return callback(null, body);
+	});		
+}
+
 // Display help || usage
 function showUsage() {
 	console.log("Usage: ./tests/testClient hostname port baseurl all|user|category|product|offer");
@@ -543,7 +569,24 @@ function main(args) {
 			logger.log("Test 12: Get Offers: \t\t\tOK");
 			cb(null, waterfallJson);			
 		});
-	}	
+	},
+
+	//Test 13: Put offer
+	function(waterfallJson, cb) {
+		putOffer(baseurl, waterfallJson, function(error, body) {
+			if (error) {
+				logger.log("Test 13: Put Offer: Failed. Error code: " + error);
+				return cb(error);
+			}
+			if (_.isEmpty(body) || !body[0].offerId) {
+				logger.log("Test 13: Put Offer: Failed. Empty Body or no offer Id received.");
+				return cb(500);
+			}			
+			//waterfallJson.getOfferBody = body;
+			logger.log("Test 13: Put Offer: \t\t\tOK");
+			cb(null, waterfallJson);			
+		});
+	}		
 
 	],
 	function(error, waterfallJson) {
