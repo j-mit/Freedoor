@@ -224,6 +224,32 @@ function getProducts(baseurl, waterfallJson, callback) {
 	});		
 }
 
+// put product, change details of a product
+function putProduct(baseurl, waterfallJson, callback) {
+	// callback would include error, body
+	// put product
+	var productObject = waterfallJson.getProductBody;
+	productObject.expectedOffer = "This is the changed offer." + getRandomNumber("string");
+	var url = baseurl + "/category/" + waterfallJson.getCategoryBody.categoryId + "/product/" + waterfallJson.postProductBody.productId;
+	var options = {
+		method: 'put',
+		body: productObject,
+		json: true,
+		url: url
+	}
+	// callback would include error and body
+	request(options, function(error, response, body) {
+		if (error) {
+			logger.log("Error received from putProduct: " + error);
+			return callback(500);
+		}
+		if (response.statusCode !== 200) {
+			return callback(response.statusCode);
+		}
+		return callback(null, body);
+	});		
+}
+
 // Display help || usage
 function showUsage() {
 	console.log("Usage: ./tests/testClient hostname port baseurl all|user|category|product|offer");
@@ -353,7 +379,7 @@ function main(args) {
 				logger.log("Test 7: Get Product: Failed. Empty Body or no productId received.");
 				return cb(500);
 			}			
-			//waterfallJson.getCategoriesBody = body;
+			waterfallJson.getProductBody = body;
 			logger.log("Test 7: Get product: \t\t\tOK");
 			cb(null, waterfallJson);
 		});
@@ -370,11 +396,29 @@ function main(args) {
 				logger.log("Test 8: Get Products: Failed. Empty Body or no productId received.");
 				return cb(500);
 			}			
-			//waterfallJson.getCategoriesBody = body;
+			//waterfallJson.getProductsBody = body;
 			logger.log("Test 8: Get products: \t\t\tOK");
 			cb(null, waterfallJson);
 		});
-	}
+	},
+
+	//Test 9: Put product
+	function(waterfallJson, cb) {
+		putProduct(baseurl, waterfallJson, function(error, body) {
+			if (error) {
+				console.log(body)
+				logger.log("Test 9: Put Product: Failed. Error code: " + error);
+				return cb(error);
+			}
+			if (_.isEmpty(body) || !body.productId) {
+				logger.log("Test 9: Post Product: Failed. Empty Body or no product Id received.");
+				return cb(500);
+			}			
+			//waterfallJson.putProductBody = body;
+			logger.log("Test 9: Put Product: \t\t\tOK");
+			cb(null, waterfallJson);			
+		});
+	}	
 
 	],
 	function(error, waterfallJson) {
