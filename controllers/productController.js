@@ -13,6 +13,10 @@ module.exports.postProduct = function(req, res) {
 		logger.log("Empty request body received in POST product.");
 		return res.send(400, env.errorMessages.code400);
 	}
+	if (env.config.server.validateSchemas && !env.objectSchemaValidator.validate(req.body, env.postProductSchema)) {
+		logger.log("Invalid post product schema received. " + JSON.stringify(env.objectSchemaValidator.getLastErrors()));
+		return res.send(400, _.extend(env.errorMessages.code400, env.objectSchemaValidator.getLastErrors()));
+	}
 	productModel.dbCreateProduct(req.body, function(error, newProduct) {
 		if (error) {
 			logger.error('Error from database in POST product. ' + error);
