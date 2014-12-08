@@ -284,6 +284,27 @@ function postOffer(baseurl, waterfallJson, callback) {
 	});		
 }
 
+// get an offer by offer id
+function getOffer(baseurl, waterfallJson, callback) {
+	// callback would include error and body
+	var url = baseurl + "/category/" + waterfallJson.getCategoryBody.categoryId + "/product/" + waterfallJson.getProductBody.productId + "/offer/" + waterfallJson.postOfferBody.offerId;
+	var options = {
+		method: 'get',
+		json: true,
+		url: url
+	}	
+	request(options, function(error, response, body) {
+		if(error) {
+			logger.log("Error received from getOffer: " + error);
+			return callback(500);
+		}
+		if (response.statusCode !== 200) {
+			return callback(null, body);
+		}
+		return callback(null, body);
+	});		
+}
+
 // Display help || usage
 function showUsage() {
 	console.log("Usage: ./tests/testClient hostname port baseurl all|user|category|product|offer");
@@ -388,7 +409,6 @@ function main(args) {
 	function(waterfallJson, cb) {
 		postProduct(baseurl, waterfallJson, function(error, body) {
 			if (error) {
-				console.log(body)
 				logger.log("Test 6: Post Product: Failed. Error code: " + error);
 				return cb(error);
 			}
@@ -440,7 +460,6 @@ function main(args) {
 	function(waterfallJson, cb) {
 		putProduct(baseurl, waterfallJson, function(error, body) {
 			if (error) {
-				console.log(body)
 				logger.log("Test 9: Put Product: Failed. Error code: " + error);
 				return cb(error);
 			}
@@ -458,7 +477,6 @@ function main(args) {
 	function(waterfallJson, cb) {
 		postOffer(baseurl, waterfallJson, function(error, body) {
 			if (error) {
-				console.log(body)
 				logger.log("Test 10: Post Offer: Failed. Error code: " + error);
 				return cb(error);
 			}
@@ -466,11 +484,28 @@ function main(args) {
 				logger.log("Test 10: Post Offer: Failed. Empty Body or no offer Id received.");
 				return cb(500);
 			}			
-			//waterfallJson.putProductBody = body;
+			waterfallJson.postOfferBody = body;
 			logger.log("Test 10: Post Offer: \t\t\tOK");
 			cb(null, waterfallJson);			
 		});
-	}		
+	},
+
+	//Test 11: Get Offer
+	function(waterfallJson, cb) {
+		getOffer(baseurl, waterfallJson, function(error, body) {
+			if (error) {
+				logger.log("Test 11: Get Offer: Failed. Error code: " + error);
+				return cb(error);
+			}
+			if (_.isEmpty(body) || !body.offerId) {
+				logger.log("Test 11: Get Offer: Failed. Empty Body or no offer Id received.");
+				return cb(500);
+			}			
+			waterfallJson.getOfferBody = body;
+			logger.log("Test 11: Get Offer: \t\t\tOK");
+			cb(null, waterfallJson);			
+		});
+	},	
 
 	],
 	function(error, waterfallJson) {
