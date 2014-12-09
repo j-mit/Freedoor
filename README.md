@@ -33,7 +33,7 @@ Sample Test Client Run:
 ```
 ~/freedoor 547-> ./tests/testClient.js localhost 8000 /freedoor/v1 all
 9 Dec 01:55:43 - Running all tests on server: http://localhost:8000/freedoor/v1
-9 Dec 01:55:43 - Test 1: Post user: 			  OK
+9 Dec 01:55:43 - Test 1: Post user: 			 OK
 9 Dec 01:55:43 - Test 2: Get user: 			    OK
 9 Dec 01:55:43 - Test 3: Post Category: 		OK
 9 Dec 01:55:43 - Test 4: Get category: 			OK
