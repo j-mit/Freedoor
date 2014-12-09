@@ -354,6 +354,55 @@ function putOffer(baseurl, waterfallJson, callback) {
 	});		
 }
 
+// post comment
+function postComment(baseurl, waterfallJson, callback) {
+	// callback would include error, body
+	// post comment
+	var commentObject = {
+		"userId": waterfallJson.getUserBody.userId,
+		"comment": "New comment, " + getRandomNumber("string")
+	}
+	var url = baseurl + "/category/" + waterfallJson.getCategoryBody.categoryId + "/product/" + waterfallJson.getProductBody.productId + "/offer/" + waterfallJson.getOfferBody.offerId + "/comment";
+	var options = {
+		method: 'post',
+		body: commentObject,
+		json: true,
+		url: url
+	}
+	// callback would include error and body
+	request(options, function(error, response, body) {
+		if (error) {
+			logger.log("Error received from postComment: " + error);
+			return callback(500);
+		}
+		if (response.statusCode !== 200) {
+			return callback(response.statusCode);
+		}
+		return callback(null, body);
+	});		
+}
+
+// get history of an offer
+function getHistory(baseurl, waterfallJson, callback) {
+	// callback would include error and body
+	var url = baseurl + "/category/" + waterfallJson.getCategoryBody.categoryId + "/product/" + waterfallJson.getProductBody.productId + "/offer/" + waterfallJson.getOfferBody.offerId + "/history";
+	var options = {
+		method: 'get',
+		json: true,
+		url: url
+	}	
+	request(options, function(error, response, body) {
+		if(error) {
+			logger.log("Error received from getHistory: " + error);
+			return callback(500);
+		}
+		if (response.statusCode !== 200) {
+			return callback(null, body);
+		}
+		return callback(null, body);
+	});		
+}
+
 // Display help || usage
 function showUsage() {
 	console.log("Usage: ./tests/testClient hostname port baseurl all|user|category|product|offer");
@@ -588,7 +637,42 @@ function main(args) {
 			logger.log("Test 13: Put Offer: \t\t\tOK");
 			cb(null, waterfallJson);			
 		});
-	}		
+	},
+
+	//Test 14: Post Comment
+	function(waterfallJson, cb) {
+		postComment(baseurl, waterfallJson, function(error, body) {
+			if (error) {
+				logger.log("Test 14: Post Comment: Failed. Error code: " + error);
+				return cb(error);
+			}
+			if (_.isEmpty(body) || !body.offerId) {
+				logger.log("Test 14: Post Comment: Failed. Empty Body or no offer Id received.");
+				return cb(500);
+			}			
+			//waterfallJson.getOfferBody = body;
+			logger.log("Test 14: Post Comment: \t\tOK");
+			cb(null, waterfallJson);			
+		});
+	},
+
+	//Test 15: Get History
+	function(waterfallJson, cb) {
+		getHistory(baseurl, waterfallJson, function(error, body) {
+			if (error) {
+				logger.log("Test 15: Get History: Failed. Error code: " + error);
+				return cb(error);
+			}
+			//console.log(body)
+			if (_.isEmpty(body) || !body[0].offerId) {
+				logger.log("Test 15: Get History: Failed. Empty Body or no comment Id received.");
+				return cb(500);
+			}			
+			//waterfallJson.getOfferBody = body;
+			logger.log("Test 15: Get History: \t\t\tOK");
+			cb(null, waterfallJson);			
+		});
+	}	
 
 	],
 	function(error, waterfallJson) {
