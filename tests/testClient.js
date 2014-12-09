@@ -14,11 +14,11 @@ var logger = require('util')
 // Get random number for objects creation
 function getRandomNumber(param) {
 	if (param === "number") {
-		return Math.random();
+		return Math.round(Math.random());
 	} else if (param === "string") {
-		return String(Math.random());
+		return Math.round(String(Math.random()));
 	}
-	return Math.random();
+	return Math.round(Math.random());
 }
 
 // Get a new unix timestamp to update last modified
