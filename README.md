@@ -31,14 +31,30 @@ Usage: ./tests/testClient hostname port baseurl all|user|category|product|offer
 
 Sample Test Client Run:
 ```
-~/freedoor 1228: -> ./tests/testClient.js localhost 8000 /freedoor/v1 all
-7 Dec 17:38:35 - Running all tests on server: http://localhost:8000/freedoor/v1
-7 Dec 17:38:35 - Test 1: Post user: 			OK
-7 Dec 17:38:35 - Test 2: Get user: 			OK
-7 Dec 17:38:35 - Test 3: Post Category: 		OK
-7 Dec 17:38:35 - Test 4: Get category: 			OK
-7 Dec 17:38:35 - Test 5: Get categories: 		OK
-7 Dec 17:38:35 - Test 6: Post Product: 			OK
-7 Dec 17:38:35 - Test 7: Get product: 			OK
-7 Dec 17:38:35 - Test 8: Get products: 			OK
+~/freedoor 547-> ./tests/testClient.js localhost 8000 /freedoor/v1 all
+9 Dec 01:55:43 - Running all tests on server: http://localhost:8000/freedoor/v1
+9 Dec 01:55:43 - Test 1: Post user: 			  OK
+9 Dec 01:55:43 - Test 2: Get user: 			    OK
+9 Dec 01:55:43 - Test 3: Post Category: 		OK
+9 Dec 01:55:43 - Test 4: Get category: 			OK
+9 Dec 01:55:43 - Test 5: Get categories: 		OK
+9 Dec 01:55:43 - Test 6: Post Product: 			OK
+9 Dec 01:55:43 - Test 7: Get product: 			OK
+9 Dec 01:55:43 - Test 8: Get products: 			OK
+9 Dec 01:55:43 - Test 9: Put Product: 			OK
+9 Dec 01:55:43 - Test 10: Post Offer: 			OK
+9 Dec 01:55:43 - Test 11: Get Offer: 			  OK
+9 Dec 01:55:43 - Test 12: Get Offers: 			OK
+9 Dec 01:55:43 - Test 13: Put Offer: 			  OK
+9 Dec 01:55:43 - Test 14: Post Comment: 		OK
+9 Dec 01:55:43 - Test 15: Get History: 			OK
+~/freedoor 548-> 
+```
+
+Root '/' Route for Demo, Help to rebase to baseurl: /freedoor/v1
+```json
+{
+Welcome: "We are serving at baseurl: /freedoor/v1. Visit: http://192.168.4.250:8000/freedoor/v1",
+Documentation: "http://nitsnwits.github.io/freedoor/freedoor-api.html"
+}
 ```
