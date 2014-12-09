@@ -262,7 +262,8 @@ function postOffer(baseurl, waterfallJson, callback) {
 		'offerExpiry': getUnixTimestamp(),
 		'productId': waterfallJson.getProductBody.productId,
 		'buyerId': waterfallJson.getUserBody.userId,
-		'lastModified': getUnixTimestamp()
+		'lastModified': getUnixTimestamp(),
+		'comments': 'test comment, ' + getRandomNumber("string")
 	}
 	var url = baseurl + "/category/" + waterfallJson.getCategoryBody.categoryId + "/product/" + waterfallJson.getProductBody.productId + "/offer";
 	var options = {
@@ -332,6 +333,7 @@ function putOffer(baseurl, waterfallJson, callback) {
 	// put offer
 	var offerObject = waterfallJson.getOfferBody;
 	offerObject.sellerStatus = "Accepted";
+	offerObject.comments = "Updated test comment, " + getRandomNumber("string");
 	var url = baseurl + "/category/" + waterfallJson.getCategoryBody.categoryId + "/product/" + waterfallJson.getProductBody.productId + "/offer/" + waterfallJson.getOfferBody.offerId;
 	var options = {
 		method: 'put',

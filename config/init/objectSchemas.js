@@ -86,7 +86,7 @@ moduleExports.postOfferSchema = [
 			productId: { type: "string", format: "freedoorId" },
 			buyerId: { type: "string", format: "freedoorId" },
 			lastModified: { type: "number" },
-			comments: { type: "array" }
+			comments: { type: "string" }
 		},
 		required: ["productId", "buyerId"]
 	}
@@ -106,7 +106,7 @@ moduleExports.putOfferSchema = [
 			productId: { type: "string", format: "freedoorId" },
 			buyerId: { type: "string", format: "freedoorId" },
 			lastModified: { type: "number" },
-			comments: { type: "array"}
+			comments: { type: "string"}
 		},
 		required: ["offerId", "productId", "buyerId"]
 	}
