@@ -43,9 +43,9 @@ Sample Test Client Run:
 9 Dec 01:55:43 - Test 8: Get products: 			OK
 9 Dec 01:55:43 - Test 9: Put Product: 			OK
 9 Dec 01:55:43 - Test 10: Post Offer: 			OK
-9 Dec 01:55:43 - Test 11: Get Offer: 			  OK
+9 Dec 01:55:43 - Test 11: Get Offer: 			OK
 9 Dec 01:55:43 - Test 12: Get Offers: 			OK
-9 Dec 01:55:43 - Test 13: Put Offer: 			  OK
+9 Dec 01:55:43 - Test 13: Put Offer: 			OK
 9 Dec 01:55:43 - Test 14: Post Comment: 		OK
 9 Dec 01:55:43 - Test 15: Get History: 			OK
 ~/freedoor 548-> 
