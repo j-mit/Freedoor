@@ -36,8 +36,8 @@ module.exports = function(app, env) {
 	// Category routes
 
 	//Comment routes
-	app.post(baseurl + '/category/:category_id/product/:product_id/offer/:offer_id/comments', commentController.postComments);
-	app.get(baseurl + '/category/:category_id/product/:product_id/offer/:offer_id/comments/:comment_id', commentController.getComments);
+	app.post(baseurl + '/category/:category_id/product/:product_id/offer/:offer_id/comment', commentController.postComments);
+	//app.get(baseurl + '/category/:category_id/product/:product_id/offer/:offer_id/comment/:comment_id', commentController.getComments);
 	
 	// Offer routes
 	app.get(baseurl + '/category/:category_id/product/:product_id/offer', offerController.getOffer);
