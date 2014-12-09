@@ -19,7 +19,10 @@ module.exports.postComments = function(req,res){
 		logger.log("Empty request body received in POST comment.");
 		return res.send(400, env.errorMessages.code400);
 	}
-	
+	if (env.config.server.validateSchemas && !env.objectSchemaValidator.validate(req.body, env.postCommentSchema)) {
+		logger.log("Invalid post comment schema received. " + JSON.stringify(env.objectSchemaValidator.getLastErrors()));
+		return res.send(400, _.extend(env.errorMessages.code400, env.objectSchemaValidator.getLastErrors()));
+	}	
 	commentModel.dbCreateComment(req.body, req.params.offer_id, function(error, offerObject){
 		if(error){
 			logger.error('Error from database in POST comment. ' + error);

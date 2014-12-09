@@ -85,8 +85,10 @@ moduleExports.postOfferSchema = [
 			offerExpiry: { type: "number" },
 			productId: { type: "string", format: "freedoorId" },
 			buyerId: { type: "string", format: "freedoorId" },
-			lastModified: { type: "number" }
-		}
+			lastModified: { type: "number" },
+			comments: { type: "array" }
+		},
+		required: ["productId", "buyerId"]
 	}
 ]
 
@@ -103,8 +105,10 @@ moduleExports.putOfferSchema = [
 			offerExpiry: { type: "number" },
 			productId: { type: "string", format: "freedoorId" },
 			buyerId: { type: "string", format: "freedoorId" },
-			lastModified: { type: "number" }
-		}
+			lastModified: { type: "number" },
+			comments: { type: "array"}
+		},
+		required: ["offerId", "productId", "buyerId"]
 	}
 ]
 
@@ -115,7 +119,8 @@ moduleExports.postCommentSchema = [
 		properties: {
 			userId: { type: "string", format: "freedoorId" },
 			comment: { type: "string" }
-		}
+		},
+		required: ["userId"]
 	}
 ]
 

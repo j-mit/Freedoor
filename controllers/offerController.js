@@ -12,7 +12,10 @@ module.exports.postOffer = function(req, res) {
 		logger.log("Empty request body received in POST offer.");
 		return res.send(400, env.errorMessages.code400);
 	}
-	
+	if (env.config.server.validateSchemas && !env.objectSchemaValidator.validate(req.body, env.postOfferSchema)) {
+		logger.log("Invalid post offer schema received. " + JSON.stringify(env.objectSchemaValidator.getLastErrors()));
+		return res.send(400, _.extend(env.errorMessages.code400, env.objectSchemaValidator.getLastErrors()));
+	}	
 	offerModel.dbCreateOffer(req.body, function(error, newOffer) {
 		if (error) {
 			logger.error('Error from database in POST offer. ' + error);
@@ -64,7 +67,10 @@ module.exports.putOfferId = function(req, res) {
 		logger.log("Empty request body received in PUT offer.");
 		return res.send(400, env.errorMessages.code400);
 	}
-	
+	if (env.config.server.validateSchemas && !env.objectSchemaValidator.validate(req.body, env.putOfferSchema)) {
+		logger.log("Invalid put offer schema received. " + JSON.stringify(env.objectSchemaValidator.getLastErrors()));
+		return res.send(400, _.extend(env.errorMessages.code400, env.objectSchemaValidator.getLastErrors()));
+	}	
 	var offerid = req.params.offer_id;
 	offerModel.dbUpdateOffer(offerid, req.body, function(error, upOffer) {
 		if (error) {

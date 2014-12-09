@@ -47,6 +47,6 @@ module.exports = function(app, env) {
 	app.delete(baseurl + '/category/:category_id/product/:product_id/offer/:offer_id', offerController.deleteOfferId);
 	
 	//history routes
-	app.get(baseurl + '/category/:category_id/product/:product_id/history/:offer_id', historyController.getHistory);
+	app.get(baseurl + '/category/:category_id/product/:product_id/offer/:offer_id/history', historyController.getHistory);
 	
 }

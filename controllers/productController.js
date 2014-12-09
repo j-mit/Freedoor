@@ -67,6 +67,10 @@ module.exports.putProduct = function(req, res) {
 		logger.log("Empty request body received in PUT product.");
 		return res.send(400, env.errorMessages.code400);
 	}
+	if (env.config.server.validateSchemas && !env.objectSchemaValidator.validate(req.body, env.putProductSchema)) {
+		logger.log("Invalid put product schema received. " + JSON.stringify(env.objectSchemaValidator.getLastErrors()));
+		return res.send(400, _.extend(env.errorMessages.code400, env.objectSchemaValidator.getLastErrors()));
+	}	
 	var productId = req.params.product_id;
 	productModel.dbUpdateProduct(productId,req.body, function(error, product) {
 		if (error) {
