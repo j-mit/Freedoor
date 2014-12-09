@@ -565,7 +565,7 @@ function main(args) {
 				logger.log("Test 12: Get Offers: Failed. Empty Body or no offer Id received.");
 				return cb(500);
 			}			
-			waterfallJson.getOfferBody = body;
+			waterfallJson.getOffersBody = body;
 			logger.log("Test 12: Get Offers: \t\t\tOK");
 			cb(null, waterfallJson);			
 		});
@@ -578,7 +578,7 @@ function main(args) {
 				logger.log("Test 13: Put Offer: Failed. Error code: " + error);
 				return cb(error);
 			}
-			if (_.isEmpty(body) || !body[0].offerId) {
+			if (_.isEmpty(body) || !body.offerId) {
 				logger.log("Test 13: Put Offer: Failed. Empty Body or no offer Id received.");
 				return cb(500);
 			}			

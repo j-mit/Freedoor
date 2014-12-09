@@ -48,7 +48,6 @@ module.exports.getProduct = function(req, res) {
 
 module.exports.getProducts = function(req, res) {
 	var categoryId = req.params.category_id;
-	console.log(categoryId);
 	productModel.dbGetProducts(categoryId, function(error, products) {
 		if (error) {
 			logger.error('Error from database: ' + error);

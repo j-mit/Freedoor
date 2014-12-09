@@ -12,7 +12,6 @@ function dbCreateOffer(offerObject, callback) {
 	
 	offerObject = _.omit(offerObject, 'comments');
 	
-	console.log(offerObject);
 	offerObject = _.extend(offerObject, offerId, comment);
 	// Create object instance for mongoose
 	var dbOfferObject = new env.Offers(offerObject);
@@ -127,19 +126,21 @@ function dbUpdateOffer(offerid, offerup, callback) {
 		
 		// Convert the mongoose doc to JSON object
 		newOfferObject = newOfferObject.toObject();
-		return callback(null, _.omit(newOfferObject, ['_id', '__v']));
+		callback(null, _.omit(newOfferObject, ['_id', '__v']));
+		//Update Offer Table
+		
+		env.Offers.update({ "offerId": offerid }, { $set : offerup }, function(error, offerObject) {
+			// log error from database, if so
+			if(error) {
+				logger.error('Error from database: ' + error);
+				return callback(error);
+			}
+			return;
+		
+	 	});		
 	});
 	});
-	//Update Offer Table
-	
-	env.Offers.update({ "offerId": offerid }, { $set : offerup }, function(error, offerObject) {
-		// log error from database, if so
-		if(error) {
-			logger.error('Error from database: ' + error);
-			return callback(error);
-		}	
-	
- 	});
+
 }
 
 
