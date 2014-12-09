@@ -15,6 +15,12 @@ var userController = require('../../controllers/userController')
 
 module.exports = function(app, env) {
 	//set all the routes for freedoor application
+	app.get('/', function(req, res) {
+		res.send(200, {
+			"Welcome": "We are serving at baseurl: /freedoor/v1. Visit: http://192.168.4.250:8000/freedoor/v1",
+			"Documentation": "http://nitsnwits.github.io/freedoor/freedoor-api.html"
+		});
+	});
 	
 	// User routes
 	app.post(baseurl + '/users', userController.postUser);
