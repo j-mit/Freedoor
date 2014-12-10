@@ -51,7 +51,7 @@ Sample Test Client Run:
 ~/freedoor 548-> 
 ```
 
-Root '/' Route for Demo, Help to rebase to baseurl: /freedoor/v1
+Root '/' Route for Demo, Help other teams to rebase to baseurl: /freedoor/v1
 ```json
 {
 "Welcome": "We are serving at baseurl: /freedoor/v1. Visit: http://192.168.4.250:8000/freedoor/v1",
