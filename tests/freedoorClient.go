@@ -47,35 +47,3 @@ func (c *controller) postUser(u User) (string, User, error) {
 	}
 	url := "/user"
 }
-
-func (c *controller) postUser(u User) (string, User, error) {
-	body, err := json.Marshal(u)
-	if err != nil {
-		return "JSON marshall", User{}, err
-	}
-	relativeURL := "/user"
-	method := "POST"
-
-	req, err := c.createFFRequest(method, relativeURL, body)
-	if err != nil {
-		fmt.Printf("Cannot create request %s\n", err.Error())
-		return "", User{}, err
-	}
-
-	resp, err := http.DefaultClient.Do(req)
-	if err != nil {
-		fmt.Printf("Cannot send request %s\n", err.Error())
-		return "", User{}, err
-	}
-	defer resp.Body.Close()
-	if resp.StatusCode != http.StatusOK {
-		return "", User{}, fmt.Errorf("response code returned is %d\n", resp.StatusCode)
-	}
-	err = json.NewDecoder(resp.Body).Decode(&u)
-	if u.UserID == "" {
-		return "", User{}, fmt.Errorf("got 200, but no userId value")
-	}
-	c.users[u.UserID] = u
-	return "", u, nil
-
-}
